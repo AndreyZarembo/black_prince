@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pomodoro таймер онлайн — настраиваемый таймер помидора</title>
-<meta name="description" content="Бесплатный Pomodoro-таймер: пресеты 5–120 минут, таймер до заданного времени, 11 цветовых тем, 9 шрифтов включая сегментный LCD, уведомления. Настройки сохраняются в ссылке. Работает на ПК и телефоне.">
+<title>Pomodoro Timer — customizable online tomato timer</title>
+<meta name="description" content="Free Pomodoro timer: 5–120 minute presets, count down to a set time, 11 color themes, 9 fonts including a 7-segment LCD, notifications. English and Russian. Settings live in the shareable URL. Works on desktop and mobile.">
 <link rel="canonical" href="https://andreyzarembo.github.io/black_prince/">
 <meta name="theme-color" content="#16161e">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Pomodoro таймер онлайн">
-<meta property="og:description" content="Настраиваемый таймер помидора: темы, шрифты (включая LCD), таймер до заданного времени, уведомления. Настройки сохраняются в ссылке.">
+<meta property="og:title" content="Pomodoro Timer — customizable online tomato timer">
+<meta property="og:description" content="Customizable Pomodoro timer: themes, fonts (including LCD), count down to a set time, notifications. Settings are saved in the link.">
 <meta property="og:url" content="https://andreyzarembo.github.io/black_prince/">
-<meta property="og:locale" content="ru_RU">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Pomodoro таймер",
+  "name": "Pomodoro Timer",
   "url": "https://andreyzarembo.github.io/black_prince/",
-  "description": "Бесплатный настраиваемый Pomodoro-таймер с темами, шрифтами и таймером до заданного времени",
+  "description": "Free customizable Pomodoro timer with themes, fonts, until-time countdown and notifications. Available in English and Russian.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
-  "inLanguage": "ru",
+  "inLanguage": ["en", "ru"],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
 }
 </script>
@@ -259,6 +260,64 @@
     margin-bottom: -6px;
   }
 
+  /* ---------- Help ---------- */
+  .help-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 700;
+    flex: none;
+  }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10;
+  }
+
+  .modal.open { display: flex; }
+
+  .modal-box {
+    position: relative;
+    background: var(--bg);
+    border-radius: 16px;
+    max-width: 620px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 28px 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-box h2 { font-size: 20px; margin-bottom: 4px; padding-right: 30px; }
+  .modal-box h3 { font-size: 15px; margin: 18px 0 6px; color: var(--accent); }
+  .modal-box p, .modal-box li { font-size: 14px; line-height: 1.55; }
+  .modal-box ul { padding-left: 20px; margin: 6px 0; }
+  .modal-box li { margin: 4px 0; }
+  .modal-box code {
+    background: var(--panel);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 13px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 1;
+  }
+
   @media (max-width: 560px) {
     .settings { gap: 8px 10px; }
     .chip { padding: 8px 4px; font-size: 13px; }
@@ -271,38 +330,38 @@
 <body>
 
 <header class="settings">
-  <label class="setting"><span>Тема</span>
+  <label class="setting"><span id="labelTheme">Theme</span>
     <select id="theme">
-      <option value="system">Системная</option>
-      <option value="dark">Тёмная</option>
-      <option value="light">Светлая</option>
+      <option value="system">System</option>
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
     </select>
   </label>
-  <label class="setting"><span>Пресет</span>
+  <label class="setting"><span id="labelPreset">Preset</span>
     <select id="preset">
-      <option value="">Свой</option>
+      <option value="">Custom</option>
     </select>
   </label>
-  <label class="setting"><span>Фон</span>
+  <label class="setting"><span id="labelBg">Background</span>
     <input type="color" id="bgColor">
   </label>
-  <label class="setting"><span>Акцент</span>
+  <label class="setting"><span id="labelAccent">Accent</span>
     <input type="color" id="accentColor">
   </label>
-  <label class="setting"><span>Шрифт</span>
+  <label class="setting"><span id="labelFont">Font</span>
     <select id="font">
-      <option value="0">Системный</option>
-      <option value="1">Моноширинный</option>
-      <option value="2">С засечками</option>
-      <option value="3">Дисплейный</option>
-      <option value="4">Цифровой</option>
-      <option value="5">Пиксельный</option>
-      <option value="6">Рукописный</option>
+      <option value="0">System</option>
+      <option value="1">Monospace</option>
+      <option value="2">Serif</option>
+      <option value="3">Display</option>
+      <option value="4">Digital</option>
+      <option value="5">Pixel</option>
+      <option value="6">Handwritten</option>
       <option value="7">Comic Sans</option>
-      <option value="8">Сегментный (LCD)</option>
+      <option value="8">Segment (LCD)</option>
     </select>
   </label>
-  <label class="setting"><span>Масштаб</span>
+  <label class="setting"><span id="labelScale">Scale</span>
     <select id="scale">
       <option value="75">75%</option>
       <option value="90">90%</option>
@@ -312,6 +371,13 @@
       <option value="150">150%</option>
     </select>
   </label>
+  <label class="setting"><span id="labelLang">Language</span>
+    <select id="langSel">
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+  </label>
+  <button id="helpBtn" class="help-btn" title="Help">?</button>
 </header>
 
 <main>
@@ -326,16 +392,104 @@
   </div>
 
   <div class="presets">
-    <div class="row-label">Минуты</div>
+    <div class="row-label" id="labelMinutes">Minutes</div>
     <div class="chip-row" id="durationRow"></div>
-    <div class="row-label">До времени</div>
+    <div class="row-label" id="labelUntil">Until time</div>
     <div class="chip-row" id="untilRow"></div>
   </div>
 </main>
 
+<div class="modal" id="helpModal">
+  <div class="modal-box">
+    <button class="modal-close" id="helpClose" title="Close">×</button>
+    <div id="helpBody"></div>
+  </div>
+</div>
+
 <script>
 (() => {
   'use strict';
+
+  /* ---------------- Localization ---------------- */
+
+  const STR = {
+    en: {
+      docTitle: 'Pomodoro Timer — customizable online tomato timer',
+      theme: 'Theme', themeSystem: 'System', themeDark: 'Dark', themeLight: 'Light',
+      preset: 'Preset', presetCustom: 'Custom',
+      presets: { tomato: 'Tomato', night: 'Night', paper: 'Paper', ocean: 'Ocean', forest: 'Forest', lavender: 'Lavender', terminal: 'Terminal', sunset: 'Sunset', honey: 'Honey', graphite: 'Graphite', neon: 'Neon' },
+      bg: 'Background', accent: 'Accent', font: 'Font', scale: 'Scale', language: 'Language',
+      fonts: ['System', 'Monospace', 'Serif', 'Display', 'Digital', 'Pixel', 'Handwritten', 'Comic Sans', 'Segment (LCD)'],
+      minutes: 'Minutes', untilTime: 'Until time',
+      start: 'Start', pause: 'Pause', reset: 'Reset',
+      minCaption: n => n + ' min',
+      untilCaption: hm => 'until ' + hm,
+      timeUp: '🍅 Time is up!',
+      notifBody: c => c ? 'Timer: ' + c : 'Pomodoro finished',
+      addTitle: 'Add custom duration',
+      promptMinutes: 'Duration in minutes:',
+      removeTitle: 'Remove',
+      clickHint: 'Click — start / pause',
+      helpTitle: 'Help',
+      helpHtml: `
+<h2>Pomodoro Timer</h2>
+<p><strong>Pomodoro</strong> is a focus technique: work in timed sprints (classically 25 minutes), then take a short break.</p>
+<h3>Timer</h3>
+<ul>
+<li>Pick a duration in the <em>Minutes</em> row, or press <strong>+</strong> to add your own. Custom durations get a × to remove them.</li>
+<li>The <em>Until time</em> buttons (xx:00, xx:15, xx:30, xx:45) count down to the nearest such moment — in the current hour if it is still ahead, otherwise in the next one — and start automatically.</li>
+<li>Start or pause by clicking the big digits, pressing <strong>Space</strong>, or using the button. <em>Reset</em> returns to the full duration.</li>
+<li>When time is up the digits blink and a beep plays; if the tab is in the background you also get a browser notification (allow it on first start).</li>
+</ul>
+<h3>Appearance</h3>
+<ul>
+<li><em>Theme</em> follows your system by default, or force Dark / Light.</li>
+<li><em>Preset</em> offers 11 color schemes; Background and Accent can be fine-tuned by hand.</li>
+<li>9 fonts — including a real 7-segment LCD with dim unlit segments — and a timer scale from 75% to 150%.</li>
+</ul>
+<h3>Sharing</h3>
+<p>Every setting is stored in the page URL as <code>?config=…</code>. Bookmark it or send the link — your exact setup opens anywhere.</p>`,
+    },
+    ru: {
+      docTitle: 'Pomodoro таймер онлайн — настраиваемый таймер помидора',
+      theme: 'Тема', themeSystem: 'Системная', themeDark: 'Тёмная', themeLight: 'Светлая',
+      preset: 'Пресет', presetCustom: 'Свой',
+      presets: { tomato: 'Помидор', night: 'Ночь', paper: 'Бумага', ocean: 'Океан', forest: 'Лес', lavender: 'Лаванда', terminal: 'Терминал', sunset: 'Закат', honey: 'Мёд', graphite: 'Графит', neon: 'Неон' },
+      bg: 'Фон', accent: 'Акцент', font: 'Шрифт', scale: 'Масштаб', language: 'Язык',
+      fonts: ['Системный', 'Моноширинный', 'С засечками', 'Дисплейный', 'Цифровой', 'Пиксельный', 'Рукописный', 'Comic Sans', 'Сегментный (LCD)'],
+      minutes: 'Минуты', untilTime: 'До времени',
+      start: 'Старт', pause: 'Пауза', reset: 'Сброс',
+      minCaption: n => n + ' мин',
+      untilCaption: hm => 'до ' + hm,
+      timeUp: '🍅 Время вышло!',
+      notifBody: c => c ? 'Таймер: ' + c : 'Pomodoro завершён',
+      addTitle: 'Добавить своё время',
+      promptMinutes: 'Длительность в минутах:',
+      removeTitle: 'Удалить',
+      clickHint: 'Клик — старт / пауза',
+      helpTitle: 'Справка',
+      helpHtml: `
+<h2>Pomodoro таймер</h2>
+<p><strong>Pomodoro</strong> — техника концентрации: работайте спринтами по таймеру (классика — 25 минут), затем короткий перерыв.</p>
+<h3>Таймер</h3>
+<ul>
+<li>Выберите длительность в ряду <em>Минуты</em> или нажмите <strong>+</strong>, чтобы добавить свою. Свои значения удаляются крестиком.</li>
+<li>Кнопки <em>До времени</em> (xx:00, xx:15, xx:30, xx:45) ставят отсчёт до ближайшей такой отметки — текущего часа, если она ещё впереди, иначе следующего — и запускаются сами.</li>
+<li>Старт и пауза — клик по большим цифрам, клавиша <strong>Пробел</strong> или кнопка. <em>Сброс</em> возвращает полную длительность.</li>
+<li>По окончании цифры мигают и звучит сигнал; если вкладка в фоне — придёт браузерное уведомление (разрешите его при первом старте).</li>
+</ul>
+<h3>Внешний вид</h3>
+<ul>
+<li><em>Тема</em> по умолчанию следует за системой, можно зафиксировать тёмную или светлую.</li>
+<li><em>Пресет</em> — 11 цветовых схем; фон и акцент настраиваются вручную.</li>
+<li>9 шрифтов — включая настоящий семисегментный LCD с погасшими сегментами — и масштаб таймера от 75% до 150%.</li>
+</ul>
+<h3>Поделиться</h3>
+<p>Все настройки хранятся в адресе страницы как <code>?config=…</code>. Сохраните в закладки или отправьте ссылку — ваша конфигурация откроется где угодно.</p>`,
+    },
+  };
+
+  const autoLang = (navigator.language || 'en').toLowerCase().startsWith('ru') ? 'ru' : 'en';
 
   /* ---------------- Config <-> URL ---------------- */
 
@@ -373,6 +527,7 @@
   const BASE_DURATIONS = [5, 10, 15, 20, 25, 30, 40, 45, 60, 90, 120];
 
   const DEFAULTS = {
+    l: null,     // language: null -> browser default, 'en' | 'ru'
     t: 'system', // theme: system | dark | light
     p: null,     // color preset key (null -> custom colors)
     bg: null,    // background override (null -> theme default)
@@ -461,14 +616,21 @@
   const ghostEl = document.getElementById('ghost');
   const captionEl = document.getElementById('caption');
   const startBtn = document.getElementById('startBtn');
-  const baseTitle = document.title;
+  const resetBtn = document.getElementById('resetBtn');
+
+  function L() { return STR[cfg.l || autoLang]; }
 
   let totalSec = 25 * 60;   // full length of current timer
   let remaining = totalSec; // seconds left
   let running = false;
   let endAt = 0;            // timestamp when timer hits zero
   let tickId = null;
-  let caption = '';
+  let caption = null;       // {type:'min', n} | {type:'until', hm} | null
+
+  function captionText() {
+    if (!caption) return '';
+    return caption.type === 'min' ? L().minCaption(caption.n) : L().untilCaption(caption.hm);
+  }
 
   function fmt(sec) {
     sec = Math.max(0, Math.round(sec));
@@ -480,12 +642,12 @@
   function render() {
     timerEl.textContent = fmt(remaining);
     ghostEl.textContent = timerEl.textContent.replace(/\d/g, '8');
-    captionEl.textContent = caption;
-    startBtn.textContent = running ? 'Пауза' : 'Старт';
+    captionEl.textContent = captionText();
+    startBtn.textContent = running ? L().pause : L().start;
     const finished = !running && remaining === 0;
-    document.title = finished ? '🍅 Время вышло!'
+    document.title = finished ? L().timeUp
       : running ? fmt(remaining) + ' — Pomodoro'
-      : baseTitle;
+      : L().docTitle;
   }
 
   function setTimer(seconds, cap) {
@@ -532,7 +694,7 @@
 
   function finish() {
     timerEl.classList.add('done');
-    document.title = '🍅 Время вышло!';
+    document.title = L().timeUp;
     beep();
     notify();
   }
@@ -543,8 +705,8 @@
     if (Notification.permission !== 'granted') return;
     if (!document.hidden && document.hasFocus()) return;
     try {
-      const n = new Notification('🍅 Время вышло!', {
-        body: caption ? 'Таймер: ' + caption : 'Pomodoro завершён',
+      const n = new Notification(L().timeUp, {
+        body: L().notifBody(captionText()),
         tag: 'pomodoro-done',
       });
       n.onclick = () => { window.focus(); n.close(); };
@@ -593,7 +755,7 @@
     cfg.m = min;
     highlighted = min;
     saveConfig();
-    setTimer(min * 60, min + ' мин');
+    setTimer(min * 60, { type: 'min', n: min });
     renderDurations();
   }
 
@@ -609,7 +771,7 @@
         const del = document.createElement('span');
         del.className = 'del';
         del.textContent = '×';
-        del.title = 'Удалить';
+        del.title = L().removeTitle;
         del.addEventListener('click', e => {
           e.stopPropagation();
           cfg.d = cfg.d.filter(x => x !== min);
@@ -623,9 +785,9 @@
     const add = document.createElement('button');
     add.className = 'chip';
     add.textContent = '+';
-    add.title = 'Добавить своё время';
+    add.title = L().addTitle;
     add.addEventListener('click', () => {
-      const val = prompt('Длительность в минутах:');
+      const val = prompt(L().promptMinutes);
       const min = parseInt(val, 10);
       if (!min || min <= 0 || min > 999) return;
       if (!BASE_DURATIONS.includes(min) && !cfg.d.includes(min)) {
@@ -649,7 +811,7 @@
     const hh = String(target.getHours()).padStart(2, '0');
     const mm = String(target.getMinutes()).padStart(2, '0');
     highlighted = null;
-    setTimer(seconds, 'до ' + hh + ':' + mm);
+    setTimer(seconds, { type: 'until', hm: hh + ':' + mm });
     renderDurations();
     start();
   }
@@ -661,6 +823,65 @@
     btn.addEventListener('click', () => selectUntil(q));
     untilRow.appendChild(btn);
   }
+
+  /* ---------------- Locale ---------------- */
+
+  function applyLocale() {
+    const s = L();
+    document.documentElement.lang = cfg.l || autoLang;
+
+    document.getElementById('labelTheme').textContent = s.theme;
+    document.getElementById('labelPreset').textContent = s.preset;
+    document.getElementById('labelBg').textContent = s.bg;
+    document.getElementById('labelAccent').textContent = s.accent;
+    document.getElementById('labelFont').textContent = s.font;
+    document.getElementById('labelScale').textContent = s.scale;
+    document.getElementById('labelLang').textContent = s.language;
+    document.getElementById('labelMinutes').textContent = s.minutes;
+    document.getElementById('labelUntil').textContent = s.untilTime;
+
+    const themeSel = document.getElementById('theme');
+    themeSel.options[0].text = s.themeSystem;
+    themeSel.options[1].text = s.themeDark;
+    themeSel.options[2].text = s.themeLight;
+
+    const presetSel = document.getElementById('preset');
+    for (const opt of presetSel.options) {
+      opt.text = opt.value ? s.presets[opt.value] : s.presetCustom;
+    }
+
+    const fontSel = document.getElementById('font');
+    for (const opt of fontSel.options) {
+      opt.text = s.fonts[Number(opt.value)];
+    }
+
+    document.getElementById('langSel').value = cfg.l || autoLang;
+    document.getElementById('helpBtn').title = s.helpTitle;
+    document.getElementById('helpBody').innerHTML = s.helpHtml;
+    resetBtn.textContent = s.reset;
+    timerEl.title = s.clickHint;
+
+    render();
+    renderDurations();
+  }
+
+  document.getElementById('langSel').addEventListener('change', e => {
+    cfg.l = e.target.value;
+    saveConfig();
+    applyLocale();
+  });
+
+  /* ---------------- Help modal ---------------- */
+
+  const helpModal = document.getElementById('helpModal');
+  document.getElementById('helpBtn').addEventListener('click', () => helpModal.classList.add('open'));
+  document.getElementById('helpClose').addEventListener('click', () => helpModal.classList.remove('open'));
+  helpModal.addEventListener('click', e => {
+    if (e.target === helpModal) helpModal.classList.remove('open');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') helpModal.classList.remove('open');
+  });
 
   /* ---------------- Settings events ---------------- */
 
@@ -726,8 +947,8 @@
   loadConfig();
   applyAppearance();
   highlighted = cfg.m;
-  setTimer(cfg.m * 60, cfg.m + ' мин');
-  renderDurations();
+  setTimer(cfg.m * 60, { type: 'min', n: cfg.m });
+  applyLocale();
   saveConfig();
 })();
 </script>
