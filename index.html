@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pomodoro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=VT323&family=Caveat:wght@600;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #16161e;
@@ -154,20 +157,22 @@
   }
 
   .chip-row {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 8px;
-    justify-content: center;
-    max-width: 640px;
+    width: min(560px, calc(100vw - 32px));
   }
+
+  #durationRow { grid-template-columns: repeat(6, 1fr); }
+  #untilRow { grid-template-columns: repeat(4, 1fr); }
 
   .chip {
     position: relative;
     font-size: 14px;
     font-weight: 600;
-    padding: 9px 15px;
+    padding: 9px 4px;
     border-radius: 999px;
     font-variant-numeric: tabular-nums;
+    text-align: center;
   }
 
   .chip.active {
@@ -205,9 +210,10 @@
 
   @media (max-width: 560px) {
     .settings { gap: 8px 10px; }
-    .chip { padding: 8px 12px; font-size: 13px; }
+    .chip { padding: 8px 4px; font-size: 13px; }
     .chip .del { display: flex; }
     .controls button { padding: 10px 24px; }
+    #durationRow { grid-template-columns: repeat(4, 1fr); }
   }
 </style>
 </head>
@@ -216,8 +222,14 @@
 <header class="settings">
   <label class="setting"><span>Тема</span>
     <select id="theme">
+      <option value="system">Системная</option>
       <option value="dark">Тёмная</option>
       <option value="light">Светлая</option>
+    </select>
+  </label>
+  <label class="setting"><span>Пресет</span>
+    <select id="preset">
+      <option value="">Свой</option>
     </select>
   </label>
   <label class="setting"><span>Фон</span>
@@ -232,6 +244,10 @@
       <option value="1">Моноширинный</option>
       <option value="2">С засечками</option>
       <option value="3">Дисплейный</option>
+      <option value="4">Цифровой</option>
+      <option value="5">Пиксельный</option>
+      <option value="6">Рукописный</option>
+      <option value="7">Comic Sans</option>
     </select>
   </label>
   <label class="setting"><span>Масштаб</span>
@@ -273,17 +289,36 @@
     light: { bg: '#f5f2ec', ac: '#e04b3a' },
   };
 
+  const PRESETS = {
+    tomato:   { name: 'Помидор',  bg: '#2b1416', ac: '#ff6347' },
+    night:    { name: 'Ночь',     bg: '#16161e', ac: '#7aa2f7' },
+    paper:    { name: 'Бумага',   bg: '#f5f2ec', ac: '#e04b3a' },
+    ocean:    { name: 'Океан',    bg: '#0f2431', ac: '#4dd0e1' },
+    forest:   { name: 'Лес',      bg: '#1c2a1f', ac: '#9ccc65' },
+    lavender: { name: 'Лаванда',  bg: '#f3eef9', ac: '#7e57c2' },
+    terminal: { name: 'Терминал', bg: '#0a120a', ac: '#33ff66' },
+    sunset:   { name: 'Закат',    bg: '#2a1b2f', ac: '#ff9e64' },
+    honey:    { name: 'Мёд',      bg: '#fdf6e3', ac: '#b58900' },
+    graphite: { name: 'Графит',   bg: '#23272e', ac: '#00b8d4' },
+    neon:     { name: 'Неон',     bg: '#10021f', ac: '#ff2079' },
+  };
+
   const FONTS = [
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     'ui-monospace, "SF Mono", Menlo, Consolas, monospace',
     'Georgia, "Times New Roman", serif',
     '"Avenir Next", "Trebuchet MS", Verdana, sans-serif',
+    '"Orbitron", "Avenir Next", sans-serif',
+    '"VT323", "Courier New", monospace',
+    '"Caveat", "Bradley Hand", "Segoe Script", cursive',
+    '"Comic Sans MS", "Comic Neue", cursive',
   ];
 
   const BASE_DURATIONS = [5, 10, 15, 20, 25, 30, 40, 45, 60, 90, 120];
 
   const DEFAULTS = {
-    t: 'dark',   // theme
+    t: 'system', // theme: system | dark | light
+    p: null,     // color preset key (null -> custom colors)
     bg: null,    // background override (null -> theme default)
     ac: null,    // accent override
     f: 0,        // font index
@@ -329,10 +364,14 @@
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   }
 
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+
   function applyAppearance() {
-    const theme = THEMES[cfg.t] || THEMES.dark;
-    const bg = cfg.bg || theme.bg;
-    const ac = cfg.ac || theme.ac;
+    const mode = cfg.t === 'system' ? (systemDark.matches ? 'dark' : 'light') : cfg.t;
+    const theme = THEMES[mode] || THEMES.dark;
+    const preset = cfg.p && PRESETS[cfg.p];
+    const bg = cfg.bg || (preset ? preset.bg : theme.bg);
+    const ac = cfg.ac || (preset ? preset.ac : theme.ac);
     const darkBg = luminance(bg) < 0.5;
     const root = document.documentElement.style;
 
@@ -347,11 +386,16 @@
     root.setProperty('--scale', cfg.s / 100);
 
     document.getElementById('theme').value = cfg.t;
+    document.getElementById('preset').value = cfg.p || '';
     document.getElementById('bgColor').value = bg;
     document.getElementById('accentColor').value = ac;
     document.getElementById('font').value = String(cfg.f);
     document.getElementById('scale').value = String(cfg.s);
   }
+
+  systemDark.addEventListener('change', () => {
+    if (cfg.t === 'system') applyAppearance();
+  });
 
   /* ---------------- Timer ---------------- */
 
@@ -538,19 +582,48 @@
 
   /* ---------------- Settings events ---------------- */
 
+  const presetSelect = document.getElementById('preset');
+  for (const [key, p] of Object.entries(PRESETS)) {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = p.name;
+    presetSelect.appendChild(opt);
+  }
+
+  presetSelect.addEventListener('change', e => {
+    cfg.p = e.target.value || null;
+    cfg.bg = null; // preset colors take over
+    cfg.ac = null;
+    saveConfig();
+    applyAppearance();
+  });
+
+  // Manual color edits drop the preset but keep its other color
+  function bakePresetColors() {
+    const preset = cfg.p && PRESETS[cfg.p];
+    if (preset) {
+      cfg.bg = cfg.bg || preset.bg;
+      cfg.ac = cfg.ac || preset.ac;
+      cfg.p = null;
+    }
+  }
+
   document.getElementById('theme').addEventListener('change', e => {
     cfg.t = e.target.value;
-    cfg.bg = null; // reset overrides to theme defaults
+    cfg.p = null; // reset to theme defaults
+    cfg.bg = null;
     cfg.ac = null;
     saveConfig();
     applyAppearance();
   });
   document.getElementById('bgColor').addEventListener('input', e => {
+    bakePresetColors();
     cfg.bg = e.target.value;
     saveConfig();
     applyAppearance();
   });
   document.getElementById('accentColor').addEventListener('input', e => {
+    bakePresetColors();
     cfg.ac = e.target.value;
     saveConfig();
     applyAppearance();
