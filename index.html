@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomodoro</title>
+<style>
+  :root {
+    --bg: #16161e;
+    --text: #e8e8f0;
+    --muted: rgba(232, 232, 240, 0.55);
+    --panel: rgba(255, 255, 255, 0.07);
+    --panel-hover: rgba(255, 255, 255, 0.13);
+    --accent: #ff6b5e;
+    --accent-text: #16161e;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --scale: 1;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    transition: background 0.3s, color 0.3s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ---------- Top settings bar ---------- */
+  .settings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 14px 16px;
+  }
+
+  .setting {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .setting > span {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-left: 2px;
+  }
+
+  select, input[type="color"] {
+    height: 34px;
+    border: none;
+    border-radius: 9px;
+    background: var(--panel);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    padding: 0 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  select:hover, input[type="color"]:hover { background: var(--panel-hover); }
+
+  select option { background: var(--bg); color: var(--text); }
+
+  input[type="color"] {
+    width: 46px;
+    padding: 4px;
+  }
+  input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+  input[type="color"]::-webkit-color-swatch { border: none; border-radius: 6px; }
+
+  /* ---------- Timer ---------- */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 10px 16px 30px;
+  }
+
+  .timer {
+    font-size: calc(clamp(64px, 18vw, 170px) * var(--scale));
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    user-select: none;
+    color: var(--accent);
+    transition: color 0.3s;
+  }
+
+  .timer.done { animation: blink 0.8s ease-in-out 5; }
+
+  @keyframes blink {
+    50% { opacity: 0.15; }
+  }
+
+  .caption {
+    font-size: calc(15px * var(--scale));
+    color: var(--muted);
+    min-height: 1.4em;
+  }
+
+  .controls {
+    display: flex;
+    gap: 12px;
+  }
+
+  button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+    background: var(--panel);
+    border-radius: 11px;
+    transition: background 0.15s, color 0.15s, transform 0.05s;
+  }
+
+  button:hover { background: var(--panel-hover); }
+  button:active { transform: scale(0.96); }
+
+  .controls button {
+    font-size: 16px;
+    padding: 11px 30px;
+    font-weight: 600;
+  }
+
+  .controls .primary {
+    background: var(--accent);
+    color: var(--accent-text);
+  }
+  .controls .primary:hover { filter: brightness(1.1); }
+
+  /* ---------- Preset chips ---------- */
+  .presets {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 640px;
+  }
+
+  .chip {
+    position: relative;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 15px;
+    border-radius: 999px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chip.active {
+    background: var(--accent);
+    color: var(--accent-text);
+  }
+
+  .chip .del {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--muted);
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .chip:hover .del { display: flex; }
+
+  .row-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: -6px;
+  }
+
+  @media (max-width: 560px) {
+    .settings { gap: 8px 10px; }
+    .chip { padding: 8px 12px; font-size: 13px; }
+    .chip .del { display: flex; }
+    .controls button { padding: 10px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="settings">
+  <label class="setting"><span>Тема</span>
+    <select id="theme">
+      <option value="dark">Тёмная</option>
+      <option value="light">Светлая</option>
+    </select>
+  </label>
+  <label class="setting"><span>Фон</span>
+    <input type="color" id="bgColor">
+  </label>
+  <label class="setting"><span>Акцент</span>
+    <input type="color" id="accentColor">
+  </label>
+  <label class="setting"><span>Шрифт</span>
+    <select id="font">
+      <option value="0">Системный</option>
+      <option value="1">Моноширинный</option>
+      <option value="2">С засечками</option>
+      <option value="3">Дисплейный</option>
+    </select>
+  </label>
+  <label class="setting"><span>Масштаб</span>
+    <select id="scale">
+      <option value="75">75%</option>
+      <option value="90">90%</option>
+      <option value="100">100%</option>
+      <option value="115">115%</option>
+      <option value="130">130%</option>
+      <option value="150">150%</option>
+    </select>
+  </label>
+</header>
+
+<main>
+  <div class="timer" id="timer" title="Клик — старт/пауза">25:00</div>
+  <div class="caption" id="caption"></div>
+  <div class="controls">
+    <button class="primary" id="startBtn">Старт</button>
+    <button id="resetBtn">Сброс</button>
+  </div>
+
+  <div class="presets">
+    <div class="row-label">Минуты</div>
+    <div class="chip-row" id="durationRow"></div>
+    <div class="row-label">До времени</div>
+    <div class="chip-row" id="untilRow"></div>
+  </div>
+</main>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ---------------- Config <-> URL ---------------- */
+
+  const THEMES = {
+    dark:  { bg: '#16161e', ac: '#ff6b5e' },
+    light: { bg: '#f5f2ec', ac: '#e04b3a' },
+  };
+
+  const FONTS = [
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    'ui-monospace, "SF Mono", Menlo, Consolas, monospace',
+    'Georgia, "Times New Roman", serif',
+    '"Avenir Next", "Trebuchet MS", Verdana, sans-serif',
+  ];
+
+  const BASE_DURATIONS = [5, 10, 15, 20, 25, 30, 40, 45, 60, 90, 120];
+
+  const DEFAULTS = {
+    t: 'dark',   // theme
+    bg: null,    // background override (null -> theme default)
+    ac: null,    // accent override
+    f: 0,        // font index
+    s: 100,      // scale percent
+    d: [],       // extra custom durations (minutes)
+    m: 25,       // selected duration (minutes)
+  };
+
+  let cfg = { ...DEFAULTS };
+
+  function encodeConfig(obj) {
+    const json = JSON.stringify(obj);
+    return btoa(unescape(encodeURIComponent(json)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function decodeConfig(str) {
+    try {
+      const b64 = str.replace(/-/g, '+').replace(/_/g, '/');
+      const json = decodeURIComponent(escape(atob(b64)));
+      const obj = JSON.parse(json);
+      return { ...DEFAULTS, ...obj };
+    } catch (e) {
+      return { ...DEFAULTS };
+    }
+  }
+
+  function saveConfig() {
+    const url = location.pathname + '?config=' + encodeConfig(cfg);
+    history.replaceState(null, '', url);
+  }
+
+  function loadConfig() {
+    const param = new URLSearchParams(location.search).get('config');
+    if (param) cfg = decodeConfig(param);
+  }
+
+  /* ---------------- Appearance ---------------- */
+
+  function luminance(hex) {
+    const n = parseInt(hex.slice(1), 16);
+    const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  }
+
+  function applyAppearance() {
+    const theme = THEMES[cfg.t] || THEMES.dark;
+    const bg = cfg.bg || theme.bg;
+    const ac = cfg.ac || theme.ac;
+    const darkBg = luminance(bg) < 0.5;
+    const root = document.documentElement.style;
+
+    root.setProperty('--bg', bg);
+    root.setProperty('--accent', ac);
+    root.setProperty('--text', darkBg ? '#e8e8f0' : '#26262e');
+    root.setProperty('--muted', darkBg ? 'rgba(232,232,240,0.55)' : 'rgba(38,38,46,0.55)');
+    root.setProperty('--panel', darkBg ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)');
+    root.setProperty('--panel-hover', darkBg ? 'rgba(255,255,255,0.13)' : 'rgba(0,0,0,0.11)');
+    root.setProperty('--accent-text', luminance(ac) < 0.5 ? '#f5f5f7' : '#1c1c22');
+    root.setProperty('--font', FONTS[cfg.f] || FONTS[0]);
+    root.setProperty('--scale', cfg.s / 100);
+
+    document.getElementById('theme').value = cfg.t;
+    document.getElementById('bgColor').value = bg;
+    document.getElementById('accentColor').value = ac;
+    document.getElementById('font').value = String(cfg.f);
+    document.getElementById('scale').value = String(cfg.s);
+  }
+
+  /* ---------------- Timer ---------------- */
+
+  const timerEl = document.getElementById('timer');
+  const captionEl = document.getElementById('caption');
+  const startBtn = document.getElementById('startBtn');
+
+  let totalSec = 25 * 60;   // full length of current timer
+  let remaining = totalSec; // seconds left
+  let running = false;
+  let endAt = 0;            // timestamp when timer hits zero
+  let tickId = null;
+  let caption = '';
+
+  function fmt(sec) {
+    sec = Math.max(0, Math.round(sec));
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return m + ':' + String(s).padStart(2, '0');
+  }
+
+  function render() {
+    timerEl.textContent = fmt(remaining);
+    captionEl.textContent = caption;
+    startBtn.textContent = running ? 'Пауза' : 'Старт';
+    document.title = (running ? fmt(remaining) + ' — ' : '') + 'Pomodoro';
+  }
+
+  function setTimer(seconds, cap) {
+    stop();
+    totalSec = seconds;
+    remaining = seconds;
+    caption = cap;
+    timerEl.classList.remove('done');
+    render();
+  }
+
+  function start() {
+    if (remaining <= 0) remaining = totalSec;
+    running = true;
+    endAt = Date.now() + remaining * 1000;
+    timerEl.classList.remove('done');
+    tickId = setInterval(tick, 200);
+    render();
+  }
+
+  function stop() {
+    running = false;
+    if (tickId) { clearInterval(tickId); tickId = null; }
+  }
+
+  function pause() {
+    remaining = Math.max(0, (endAt - Date.now()) / 1000);
+    stop();
+    render();
+  }
+
+  function tick() {
+    remaining = (endAt - Date.now()) / 1000;
+    if (remaining <= 0) {
+      remaining = 0;
+      stop();
+      finish();
+    }
+    render();
+  }
+
+  function finish() {
+    timerEl.classList.add('done');
+    document.title = '🍅 Время вышло!';
+    beep();
+  }
+
+  function beep() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      [0, 0.25, 0.5].forEach(t => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = 880;
+        gain.gain.setValueAtTime(0.001, ctx.currentTime + t);
+        gain.gain.exponentialRampToValueAtTime(0.3, ctx.currentTime + t + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + t + 0.2);
+        osc.connect(gain).connect(ctx.destination);
+        osc.start(ctx.currentTime + t);
+        osc.stop(ctx.currentTime + t + 0.22);
+      });
+    } catch (e) { /* audio unavailable */ }
+  }
+
+  startBtn.addEventListener('click', () => running ? pause() : start());
+  timerEl.addEventListener('click', () => running ? pause() : start());
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    stop();
+    remaining = totalSec;
+    timerEl.classList.remove('done');
+    render();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space' && e.target === document.body) {
+      e.preventDefault();
+      running ? pause() : start();
+    }
+  });
+
+  /* ---------------- Duration presets ---------------- */
+
+  const durationRow = document.getElementById('durationRow');
+  let highlighted = null; // duration chip currently highlighted
+
+  function selectDuration(min) {
+    cfg.m = min;
+    highlighted = min;
+    saveConfig();
+    setTimer(min * 60, min + ' мин');
+    renderDurations();
+  }
+
+  function renderDurations() {
+    durationRow.innerHTML = '';
+    const all = [...BASE_DURATIONS, ...cfg.d].sort((a, b) => a - b);
+    for (const min of all) {
+      const btn = document.createElement('button');
+      btn.className = 'chip' + (min === highlighted ? ' active' : '');
+      btn.textContent = min;
+      btn.addEventListener('click', () => selectDuration(min));
+      if (cfg.d.includes(min)) {
+        const del = document.createElement('span');
+        del.className = 'del';
+        del.textContent = '×';
+        del.title = 'Удалить';
+        del.addEventListener('click', e => {
+          e.stopPropagation();
+          cfg.d = cfg.d.filter(x => x !== min);
+          saveConfig();
+          renderDurations();
+        });
+        btn.appendChild(del);
+      }
+      durationRow.appendChild(btn);
+    }
+    const add = document.createElement('button');
+    add.className = 'chip';
+    add.textContent = '+';
+    add.title = 'Добавить своё время';
+    add.addEventListener('click', () => {
+      const val = prompt('Длительность в минутах:');
+      const min = parseInt(val, 10);
+      if (!min || min <= 0 || min > 999) return;
+      if (!BASE_DURATIONS.includes(min) && !cfg.d.includes(min)) {
+        cfg.d.push(min);
+      }
+      selectDuration(min);
+    });
+    durationRow.appendChild(add);
+  }
+
+  /* ---------------- "Until time" presets ---------------- */
+
+  const untilRow = document.getElementById('untilRow');
+
+  function selectUntil(quarter) {
+    const now = new Date();
+    const target = new Date(now);
+    target.setMinutes(quarter, 0, 0);
+    if (target <= now) target.setHours(target.getHours() + 1);
+    const seconds = Math.round((target - now) / 1000);
+    const hh = String(target.getHours()).padStart(2, '0');
+    const mm = String(target.getMinutes()).padStart(2, '0');
+    highlighted = null;
+    setTimer(seconds, 'до ' + hh + ':' + mm);
+    renderDurations();
+    start();
+  }
+
+  for (const q of [0, 15, 30, 45]) {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = 'xx:' + String(q).padStart(2, '0');
+    btn.addEventListener('click', () => selectUntil(q));
+    untilRow.appendChild(btn);
+  }
+
+  /* ---------------- Settings events ---------------- */
+
+  document.getElementById('theme').addEventListener('change', e => {
+    cfg.t = e.target.value;
+    cfg.bg = null; // reset overrides to theme defaults
+    cfg.ac = null;
+    saveConfig();
+    applyAppearance();
+  });
+  document.getElementById('bgColor').addEventListener('input', e => {
+    cfg.bg = e.target.value;
+    saveConfig();
+    applyAppearance();
+  });
+  document.getElementById('accentColor').addEventListener('input', e => {
+    cfg.ac = e.target.value;
+    saveConfig();
+    applyAppearance();
+  });
+  document.getElementById('font').addEventListener('change', e => {
+    cfg.f = parseInt(e.target.value, 10);
+    saveConfig();
+    applyAppearance();
+  });
+  document.getElementById('scale').addEventListener('change', e => {
+    cfg.s = parseInt(e.target.value, 10);
+    saveConfig();
+    applyAppearance();
+  });
+
+  /* ---------------- Init ---------------- */
+
+  loadConfig();
+  applyAppearance();
+  highlighted = cfg.m;
+  setTimer(cfg.m * 60, cfg.m + ' мин');
+  renderDurations();
+  saveConfig();
+})();
+</script>
+</body>
+</html>
