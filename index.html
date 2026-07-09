@@ -151,25 +151,34 @@
   .timer-wrap { position: relative; }
 
   /* Subtle +/- nudge buttons around the digits */
-  .adj {
+  .adj-group {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    display: flex;
+    gap: 6px;
+    transform: translateX(-50%);
+  }
+
+  #gMinUp, #gMinDown { left: 25%; }
+  #gSecUp, #gSecDown { left: 75%; }
+  #gMinUp, #gSecUp { top: 0; }
+  #gMinDown, #gSecDown { bottom: 0; }
+
+  .adj {
+    min-width: 34px;
+    height: 26px;
+    padding: 0 8px;
+    border-radius: 999px;
     background: transparent;
     color: var(--muted);
-    font-size: 16px;
+    font-size: 12px;
+    font-weight: 600;
     line-height: 1;
+    font-variant-numeric: tabular-nums;
     opacity: 0.35;
     transition: opacity 0.15s, background 0.15s;
   }
 
   .adj:hover { opacity: 1; background: var(--panel); }
-
-  #minUp, #minDown { left: 25%; transform: translateX(-50%); }
-  #secUp, #secDown { left: 75%; transform: translateX(-50%); }
-  #minUp, #secUp { top: 0; }
-  #minDown, #secDown { bottom: 0; }
 
   .ghost {
     position: absolute;
@@ -404,14 +413,26 @@
 
 <main>
   <div class="timer-zone">
-    <button class="adj" id="minUp">+</button>
-    <button class="adj" id="secUp">+</button>
+    <div class="adj-group" id="gMinUp">
+      <button class="adj" data-d="600">+10</button>
+      <button class="adj" data-d="60">+1</button>
+    </div>
+    <div class="adj-group" id="gSecUp">
+      <button class="adj" data-d="10">+10</button>
+      <button class="adj" data-d="1">+1</button>
+    </div>
     <div class="timer-wrap">
       <div class="timer ghost" id="ghost" aria-hidden="true">88:88</div>
       <div class="timer" id="timer">25:00</div>
     </div>
-    <button class="adj" id="minDown">−</button>
-    <button class="adj" id="secDown">−</button>
+    <div class="adj-group" id="gMinDown">
+      <button class="adj" data-d="-600">−10</button>
+      <button class="adj" data-d="-60">−1</button>
+    </div>
+    <div class="adj-group" id="gSecDown">
+      <button class="adj" data-d="-10">−10</button>
+      <button class="adj" data-d="-1">−1</button>
+    </div>
   </div>
   <div class="caption" id="caption"></div>
   <div class="controls">
@@ -458,7 +479,7 @@
       promptMinutes: 'Duration in minutes:',
       removeTitle: 'Remove',
       clickHint: 'Click — start / pause',
-      adj: ['+1 min', '−1 min', '+10 s', '−10 s'],
+      minUnit: 'min', secUnit: 's',
       helpTitle: 'Help',
       helpHtml: `
 <h2>Pomodoro Timer</h2>
@@ -468,7 +489,7 @@
 <li>Pick a duration in the <em>Minutes</em> row, or press <strong>+</strong> to add your own. Custom durations get a × to remove them.</li>
 <li>The <em>Until time</em> buttons (xx:00, xx:15, xx:30, xx:45) count down to the nearest such moment — in the current hour if it is still ahead, otherwise in the next one — and start automatically.</li>
 <li>Start or pause by clicking the big digits, pressing <strong>Space</strong>, or using the button. <em>Reset</em> returns to the full duration.</li>
-<li>The subtle <strong>+ / −</strong> buttons above and below the digits nudge the timer — ±1 minute over the minutes, ±10 seconds over the seconds — before start or on the fly.</li>
+<li>The subtle <strong>+10 / +1 / −10 / −1</strong> buttons above and below the digits nudge the timer — minutes on the left, seconds on the right — before start or on the fly.</li>
 <li>When time is up the digits blink and a beep plays; if the tab is in the background you also get a browser notification (allow it on first start).</li>
 </ul>
 <h3>Appearance</h3>
@@ -497,7 +518,7 @@
       promptMinutes: 'Длительность в минутах:',
       removeTitle: 'Удалить',
       clickHint: 'Клик — старт / пауза',
-      adj: ['+1 мин', '−1 мин', '+10 с', '−10 с'],
+      minUnit: 'мин', secUnit: 'с',
       helpTitle: 'Справка',
       helpHtml: `
 <h2>Pomodoro таймер</h2>
@@ -507,7 +528,7 @@
 <li>Выберите длительность в ряду <em>Минуты</em> или нажмите <strong>+</strong>, чтобы добавить свою. Свои значения удаляются крестиком.</li>
 <li>Кнопки <em>До времени</em> (xx:00, xx:15, xx:30, xx:45) ставят отсчёт до ближайшей такой отметки — текущего часа, если она ещё впереди, иначе следующего — и запускаются сами.</li>
 <li>Старт и пауза — клик по большим цифрам, клавиша <strong>Пробел</strong> или кнопка. <em>Сброс</em> возвращает полную длительность.</li>
-<li>Неприметные кнопки <strong>+ / −</strong> над и под цифрами подстраивают таймер — ±1 минута над минутами, ±10 секунд над секундами — до старта или прямо на ходу.</li>
+<li>Неприметные кнопки <strong>+10 / +1 / −10 / −1</strong> над и под цифрами подстраивают таймер — слева минуты, справа секунды — до старта или прямо на ходу.</li>
 <li>По окончании цифры мигают и звучит сигнал; если вкладка в фоне — придёт браузерное уведомление (разрешите его при первом старте).</li>
 </ul>
 <h3>Внешний вид</h3>
@@ -779,10 +800,9 @@
     renderDurations();
   }
 
-  document.getElementById('minUp').addEventListener('click', () => adjust(60));
-  document.getElementById('minDown').addEventListener('click', () => adjust(-60));
-  document.getElementById('secUp').addEventListener('click', () => adjust(10));
-  document.getElementById('secDown').addEventListener('click', () => adjust(-10));
+  document.querySelectorAll('.adj').forEach(btn => {
+    btn.addEventListener('click', () => adjust(Number(btn.dataset.d)));
+  });
 
   startBtn.addEventListener('click', () => running ? pause() : start());
   timerEl.addEventListener('click', () => running ? pause() : start());
@@ -909,8 +929,11 @@
     }
 
     document.getElementById('langSel').value = cfg.l || autoLang;
-    ['minUp', 'minDown', 'secUp', 'secDown'].forEach((id, i) => {
-      document.getElementById(id).title = s.adj[i];
+    document.querySelectorAll('.adj').forEach(btn => {
+      const d = Number(btn.dataset.d);
+      const isMin = Math.abs(d) >= 60;
+      const n = Math.abs(isMin ? d / 60 : d);
+      btn.title = (d > 0 ? '+' : '−') + n + ' ' + (isMin ? s.minUnit : s.secUnit);
     });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
