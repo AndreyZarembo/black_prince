@@ -3,7 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pomodoro</title>
+<title>Pomodoro таймер онлайн — настраиваемый таймер помидора</title>
+<meta name="description" content="Бесплатный Pomodoro-таймер: пресеты 5–120 минут, таймер до заданного времени, 11 цветовых тем, 9 шрифтов включая сегментный LCD, уведомления. Настройки сохраняются в ссылке. Работает на ПК и телефоне.">
+<link rel="canonical" href="https://andreyzarembo.github.io/black_prince/">
+<meta name="theme-color" content="#16161e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pomodoro таймер онлайн">
+<meta property="og:description" content="Настраиваемый таймер помидора: темы, шрифты (включая LCD), таймер до заданного времени, уведомления. Настройки сохраняются в ссылке.">
+<meta property="og:url" content="https://andreyzarembo.github.io/black_prince/">
+<meta property="og:locale" content="ru_RU">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pomodoro таймер",
+  "url": "https://andreyzarembo.github.io/black_prince/",
+  "description": "Бесплатный настраиваемый Pomodoro-таймер с темами, шрифтами и таймером до заданного времени",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "ru",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=VT323&family=Caveat:wght@600;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
@@ -411,6 +433,7 @@
     root.setProperty('--font', FONTS[cfg.f] || FONTS[0]);
     root.setProperty('--scale', cfg.s / 100);
     document.body.classList.toggle('segment', cfg.f === 8);
+    document.querySelector('meta[name="theme-color"]').content = bg;
 
     document.getElementById('theme').value = cfg.t;
     document.getElementById('preset').value = cfg.p || '';
@@ -430,6 +453,7 @@
   const ghostEl = document.getElementById('ghost');
   const captionEl = document.getElementById('caption');
   const startBtn = document.getElementById('startBtn');
+  const baseTitle = document.title;
 
   let totalSec = 25 * 60;   // full length of current timer
   let remaining = totalSec; // seconds left
@@ -452,7 +476,8 @@
     startBtn.textContent = running ? 'Пауза' : 'Старт';
     const finished = !running && remaining === 0;
     document.title = finished ? '🍅 Время вышло!'
-      : (running ? fmt(remaining) + ' — ' : '') + 'Pomodoro';
+      : running ? fmt(remaining) + ' — Pomodoro'
+      : baseTitle;
   }
 
   function setTimer(seconds, cap) {
