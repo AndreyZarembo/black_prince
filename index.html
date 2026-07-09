@@ -450,7 +450,9 @@
     ghostEl.textContent = timerEl.textContent.replace(/\d/g, '8');
     captionEl.textContent = caption;
     startBtn.textContent = running ? 'Пауза' : 'Старт';
-    document.title = (running ? fmt(remaining) + ' — ' : '') + 'Pomodoro';
+    const finished = !running && remaining === 0;
+    document.title = finished ? '🍅 Время вышло!'
+      : (running ? fmt(remaining) + ' — ' : '') + 'Pomodoro';
   }
 
   function setTimer(seconds, cap) {
@@ -464,6 +466,9 @@
 
   function start() {
     if (remaining <= 0) remaining = totalSec;
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
     running = true;
     endAt = Date.now() + remaining * 1000;
     timerEl.classList.remove('done');
@@ -496,6 +501,21 @@
     timerEl.classList.add('done');
     document.title = '🍅 Время вышло!';
     beep();
+    notify();
+  }
+
+  function notify() {
+    // Notify only when the tab is not in focus — on screen the blink and beep are enough
+    if (!('Notification' in window)) return;
+    if (Notification.permission !== 'granted') return;
+    if (!document.hidden && document.hasFocus()) return;
+    try {
+      const n = new Notification('🍅 Время вышло!', {
+        body: caption ? 'Таймер: ' + caption : 'Pomodoro завершён',
+        tag: 'pomodoro-done',
+      });
+      n.onclick = () => { window.focus(); n.close(); };
+    } catch (e) { /* notifications unavailable */ }
   }
 
   function beep() {
