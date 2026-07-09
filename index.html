@@ -147,7 +147,29 @@
   .timer.done { animation: blink 0.8s ease-in-out 5; }
 
   /* Ghost "unlit segments" behind the LCD font */
+  .timer-zone { position: relative; padding: 36px 0; }
   .timer-wrap { position: relative; }
+
+  /* Subtle +/- nudge buttons around the digits */
+  .adj {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.35;
+    transition: opacity 0.15s, background 0.15s;
+  }
+
+  .adj:hover { opacity: 1; background: var(--panel); }
+
+  #minUp, #minDown { left: 25%; transform: translateX(-50%); }
+  #secUp, #secDown { left: 75%; transform: translateX(-50%); }
+  #minUp, #secUp { top: 0; }
+  #minDown, #secDown { bottom: 0; }
 
   .ghost {
     position: absolute;
@@ -381,9 +403,15 @@
 </header>
 
 <main>
-  <div class="timer-wrap">
-    <div class="timer ghost" id="ghost" aria-hidden="true">88:88</div>
-    <div class="timer" id="timer" title="Клик — старт/пауза">25:00</div>
+  <div class="timer-zone">
+    <button class="adj" id="minUp">+</button>
+    <button class="adj" id="secUp">+</button>
+    <div class="timer-wrap">
+      <div class="timer ghost" id="ghost" aria-hidden="true">88:88</div>
+      <div class="timer" id="timer">25:00</div>
+    </div>
+    <button class="adj" id="minDown">−</button>
+    <button class="adj" id="secDown">−</button>
   </div>
   <div class="caption" id="caption"></div>
   <div class="controls">
@@ -430,6 +458,7 @@
       promptMinutes: 'Duration in minutes:',
       removeTitle: 'Remove',
       clickHint: 'Click — start / pause',
+      adj: ['+1 min', '−1 min', '+10 s', '−10 s'],
       helpTitle: 'Help',
       helpHtml: `
 <h2>Pomodoro Timer</h2>
@@ -439,6 +468,7 @@
 <li>Pick a duration in the <em>Minutes</em> row, or press <strong>+</strong> to add your own. Custom durations get a × to remove them.</li>
 <li>The <em>Until time</em> buttons (xx:00, xx:15, xx:30, xx:45) count down to the nearest such moment — in the current hour if it is still ahead, otherwise in the next one — and start automatically.</li>
 <li>Start or pause by clicking the big digits, pressing <strong>Space</strong>, or using the button. <em>Reset</em> returns to the full duration.</li>
+<li>The subtle <strong>+ / −</strong> buttons above and below the digits nudge the timer — ±1 minute over the minutes, ±10 seconds over the seconds — before start or on the fly.</li>
 <li>When time is up the digits blink and a beep plays; if the tab is in the background you also get a browser notification (allow it on first start).</li>
 </ul>
 <h3>Appearance</h3>
@@ -467,6 +497,7 @@
       promptMinutes: 'Длительность в минутах:',
       removeTitle: 'Удалить',
       clickHint: 'Клик — старт / пауза',
+      adj: ['+1 мин', '−1 мин', '+10 с', '−10 с'],
       helpTitle: 'Справка',
       helpHtml: `
 <h2>Pomodoro таймер</h2>
@@ -476,6 +507,7 @@
 <li>Выберите длительность в ряду <em>Минуты</em> или нажмите <strong>+</strong>, чтобы добавить свою. Свои значения удаляются крестиком.</li>
 <li>Кнопки <em>До времени</em> (xx:00, xx:15, xx:30, xx:45) ставят отсчёт до ближайшей такой отметки — текущего часа, если она ещё впереди, иначе следующего — и запускаются сами.</li>
 <li>Старт и пауза — клик по большим цифрам, клавиша <strong>Пробел</strong> или кнопка. <em>Сброс</em> возвращает полную длительность.</li>
+<li>Неприметные кнопки <strong>+ / −</strong> над и под цифрами подстраивают таймер — ±1 минута над минутами, ±10 секунд над секундами — до старта или прямо на ходу.</li>
 <li>По окончании цифры мигают и звучит сигнал; если вкладка в фоне — придёт браузерное уведомление (разрешите его при первом старте).</li>
 </ul>
 <h3>Внешний вид</h3>
@@ -731,6 +763,27 @@
     } catch (e) { /* audio unavailable */ }
   }
 
+  // Nudge the timer by deltaSec — before start or while running
+  function adjust(deltaSec) {
+    if (running) {
+      endAt += deltaSec * 1000;
+      remaining = Math.max(0, (endAt - Date.now()) / 1000);
+    } else {
+      remaining = Math.max(0, Math.min(999 * 60, Math.round(remaining) + deltaSec));
+      totalSec = remaining;
+    }
+    if (remaining > 0) timerEl.classList.remove('done');
+    caption = null;      // duration no longer matches a preset
+    highlighted = null;
+    render();
+    renderDurations();
+  }
+
+  document.getElementById('minUp').addEventListener('click', () => adjust(60));
+  document.getElementById('minDown').addEventListener('click', () => adjust(-60));
+  document.getElementById('secUp').addEventListener('click', () => adjust(10));
+  document.getElementById('secDown').addEventListener('click', () => adjust(-10));
+
   startBtn.addEventListener('click', () => running ? pause() : start());
   timerEl.addEventListener('click', () => running ? pause() : start());
   document.getElementById('resetBtn').addEventListener('click', () => {
@@ -856,6 +909,9 @@
     }
 
     document.getElementById('langSel').value = cfg.l || autoLang;
+    ['minUp', 'minDown', 'secUp', 'secDown'].forEach((id, i) => {
+      document.getElementById(id).title = s.adj[i];
+    });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
     resetBtn.textContent = s.reset;
