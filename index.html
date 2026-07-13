@@ -7,6 +7,13 @@
 <meta name="description" content="Free Pomodoro timer: 5–120 minute presets, count down to a set time, 11 color themes, 9 fonts including a 7-segment LCD, notifications. English and Russian. Settings live in the shareable URL. Works on desktop and mobile.">
 <link rel="canonical" href="https://andreyzarembo.github.io/black_prince/">
 <meta name="theme-color" content="#16161e">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pomodoro">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Pomodoro Timer — customizable online tomato timer">
 <meta property="og:description" content="Customizable Pomodoro timer: themes, fonts (including LCD), count down to a set time, notifications. Settings are saved in the link.">
@@ -499,7 +506,9 @@
 <li>9 fonts — including a real 7-segment LCD with dim unlit segments — and a timer scale from 75% to 150%.</li>
 </ul>
 <h3>Sharing</h3>
-<p>Every setting is stored in the page URL as <code>?config=…</code>. Bookmark it or send the link — your exact setup opens anywhere.</p>`,
+<p>Every setting is stored in the page URL as <code>?config=…</code>. Bookmark it or send the link — your exact setup opens anywhere.</p>
+<h3>Install as an app</h3>
+<p>The timer is a PWA and works offline. On iPhone/iPad: Share → <em>Add to Home Screen</em>. On Android: menu → <em>Install app</em>. On desktop Chrome: the install icon in the address bar.</p>`,
     },
     ru: {
       docTitle: 'Pomodoro таймер онлайн — настраиваемый таймер помидора',
@@ -538,7 +547,9 @@
 <li>9 шрифтов — включая настоящий семисегментный LCD с погасшими сегментами — и масштаб таймера от 75% до 150%.</li>
 </ul>
 <h3>Поделиться</h3>
-<p>Все настройки хранятся в адресе страницы как <code>?config=…</code>. Сохраните в закладки или отправьте ссылку — ваша конфигурация откроется где угодно.</p>`,
+<p>Все настройки хранятся в адресе страницы как <code>?config=…</code>. Сохраните в закладки или отправьте ссылку — ваша конфигурация откроется где угодно.</p>
+<h3>Установить как приложение</h3>
+<p>Таймер — это PWA и работает офлайн. На iPhone/iPad: Поделиться → <em>На экран «Домой»</em>. На Android: меню → <em>Установить приложение</em>. В Chrome на компьютере — значок установки в адресной строке.</p>`,
     },
   };
 
@@ -1029,6 +1040,12 @@
   setTimer(cfg.m * 60, { type: 'min', n: cfg.m });
   applyLocale();
   saveConfig();
+
+  if ('serviceWorker' in navigator) {
+    addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => { /* offline mode unavailable */ });
+    });
+  }
 })();
 </script>
 </body>
