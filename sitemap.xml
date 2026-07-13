@@ -1,8 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://andreyzarembo.github.io/black_prince/</loc>
-    <lastmod>2026-07-09</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
+  </url>
+  <url>
+    <loc>https://andreyzarembo.github.io/black_prince/es/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
+  </url>
+  <url>
+    <loc>https://andreyzarembo.github.io/black_prince/de/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
+  </url>
+  <url>
+    <loc>https://andreyzarembo.github.io/black_prince/fr/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
+  </url>
+  <url>
+    <loc>https://andreyzarembo.github.io/black_prince/pt/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
+  </url>
+  <url>
+    <loc>https://andreyzarembo.github.io/black_prince/ja/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
+  </url>
+  <url>
+    <loc>https://andreyzarembo.github.io/black_prince/ru/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
+  </url>
+  <url>
+    <loc>https://andreyzarembo.github.io/black_prince/it/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
+  </url>
+  <url>
+    <loc>https://andreyzarembo.github.io/black_prince/nl/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
+  </url>
+  <url>
+    <loc>https://andreyzarembo.github.io/black_prince/pl/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://andreyzarembo.github.io/black_prince/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://andreyzarembo.github.io/black_prince/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://andreyzarembo.github.io/black_prince/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://andreyzarembo.github.io/black_prince/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://andreyzarembo.github.io/black_prince/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://andreyzarembo.github.io/black_prince/ru/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://andreyzarembo.github.io/black_prince/it/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://andreyzarembo.github.io/black_prince/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://andreyzarembo.github.io/black_prince/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/"/>
   </url>
 </urlset>

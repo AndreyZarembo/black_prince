@@ -1,9 +1,10 @@
 'use strict';
 
-const CACHE = 'pomodoro-v1';
+const CACHE = 'pomodoro-v2';
 const SHELL = [
   './',
   './index.html',
+  './locales.js',
   './manifest.webmanifest',
   './fonts/DSEG7Classic-Bold.woff2',
   './icons/icon-192.png',
