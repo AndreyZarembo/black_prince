@@ -37,14 +37,18 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Pomodoro Timer",
-  "url": "https://andreyzarembo.github.io/black_prince/",
-  "description": "Free customizable Pomodoro timer with themes, fonts, until-time countdown and notifications. Available in English and Russian.",
+  "name": "Pomodoro-timer — aanpasbare online tomaat-timer",
+  "url": "https://andreyzarembo.github.io/black_prince/nl/",
+  "description": "Gratis Pomodoro-timer: intervallen van 5–120 minuten, aftellen tot een tijdstip, 11 kleurthema’s, 9 lettertypen waaronder 7-segments-LCD, meldingen. Instellingen zitten in de link. Voor desktop en mobiel.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
-  "inLanguage": ["en", "es", "de", "fr", "pt", "ja", "ru", "it", "nl", "pl"],
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  "inLanguage": "nl",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
 }
 </script>
 <!-- Google tag (gtag.js) -->
@@ -358,6 +362,33 @@
     font-size: 13px;
   }
 
+  /* ---------- About (indexable description) ---------- */
+  .about {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+    color: var(--muted);
+  }
+
+  .about h1 {
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .about h2 { font-size: 16px; color: var(--text); margin: 4px 0 6px; }
+  .about h3 { font-size: 14px; color: var(--accent); margin: 16px 0 4px; }
+  .about p, .about li { font-size: 13.5px; line-height: 1.55; }
+  .about ul { padding-left: 20px; margin: 4px 0; }
+  .about li { margin: 3px 0; }
+  .about code {
+    background: var(--panel);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 12.5px;
+  }
+
   .modal-close {
     position: absolute;
     top: 14px;
@@ -381,38 +412,38 @@
 <body>
 
 <header class="settings">
-  <label class="setting"><span id="labelTheme">Theme</span>
+  <label class="setting"><span id="labelTheme">Thema</span>
     <select id="theme">
-      <option value="system">System</option>
-      <option value="dark">Dark</option>
-      <option value="light">Light</option>
+      <option value="system">Systeem</option>
+      <option value="dark">Donker</option>
+      <option value="light">Licht</option>
     </select>
   </label>
   <label class="setting"><span id="labelPreset">Preset</span>
     <select id="preset">
-      <option value="">Custom</option>
+      <option value="">Eigen</option>
     </select>
   </label>
-  <label class="setting"><span id="labelBg">Background</span>
+  <label class="setting"><span id="labelBg">Achtergrond</span>
     <input type="color" id="bgColor">
   </label>
   <label class="setting"><span id="labelAccent">Accent</span>
     <input type="color" id="accentColor">
   </label>
-  <label class="setting"><span id="labelFont">Font</span>
+  <label class="setting"><span id="labelFont">Lettertype</span>
     <select id="font">
-      <option value="0">System</option>
+      <option value="0">Systeem</option>
       <option value="1">Monospace</option>
       <option value="2">Serif</option>
       <option value="3">Display</option>
-      <option value="4">Digital</option>
+      <option value="4">Digitaal</option>
       <option value="5">Pixel</option>
-      <option value="6">Handwritten</option>
+      <option value="6">Handschrift</option>
       <option value="7">Comic Sans</option>
       <option value="8">Segment (LCD)</option>
     </select>
   </label>
-  <label class="setting"><span id="labelScale">Scale</span>
+  <label class="setting"><span id="labelScale">Schaal</span>
     <select id="scale">
       <option value="75">75%</option>
       <option value="90">90%</option>
@@ -422,10 +453,10 @@
       <option value="150">150%</option>
     </select>
   </label>
-  <label class="setting"><span id="labelLang">Language</span>
+  <label class="setting"><span id="labelLang">Taal</span>
     <select id="langSel"></select>
   </label>
-  <button id="helpBtn" class="help-btn" title="Help">?</button>
+  <button id="helpBtn" class="help-btn" title="Hulp">?</button>
 </header>
 
 <main>
@@ -453,17 +484,38 @@
   </div>
   <div class="caption" id="caption"></div>
   <div class="controls">
-    <button class="primary" id="startBtn">Старт</button>
-    <button id="resetBtn">Сброс</button>
+    <button class="primary" id="startBtn">Start</button>
+    <button id="resetBtn">Reset</button>
   </div>
 
   <div class="presets">
-    <div class="row-label" id="labelMinutes">Minutes</div>
+    <div class="row-label" id="labelMinutes">Minuten</div>
     <div class="chip-row" id="durationRow"></div>
-    <div class="row-label" id="labelUntil">Until time</div>
+    <div class="row-label" id="labelUntil">Tot tijdstip</div>
     <div class="chip-row" id="untilRow"></div>
   </div>
 </main>
+
+<section class="about" id="about"><h1>Pomodoro-timer — aanpasbare online tomaat-timer</h1><h2>Pomodoro-timer</h2>
+<p><strong>Pomodoro</strong> is een focustechniek: werk in getimede sprints (klassiek 25 minuten) en neem daarna een korte pauze.</p>
+<h3>Timer</h3>
+<ul>
+<li>Kies een duur in de rij <em>Minuten</em>, of druk op <strong>+</strong> om een eigen duur toe te voegen. Eigen duren verwijder je met ×.</li>
+<li>De knoppen <em>Tot tijdstip</em> (xx:00, xx:15, xx:30, xx:45) tellen af tot het dichtstbijzijnde moment — in het huidige uur als dat nog komt, anders in het volgende — en starten vanzelf.</li>
+<li>Start of pauzeer met een klik op de grote cijfers, met de <strong>spatiebalk</strong> of de knop. <em>Reset</em> herstelt de volledige duur.</li>
+<li>De subtiele knoppen <strong>+10 / +1 / −10 / −1</strong> boven en onder de cijfers stellen de timer bij — links minuten, rechts seconden — vóór de start of onderweg.</li>
+<li>Als de tijd om is, knipperen de cijfers en klinkt een piep; staat het tabblad op de achtergrond, dan krijg je ook een browsermelding (sta die toe bij de eerste start).</li>
+</ul>
+<h3>Uiterlijk</h3>
+<ul>
+<li>Het <em>Thema</em> volgt standaard je systeem, of kies vast Donker / Licht.</li>
+<li><em>Preset</em> biedt 11 kleurenschema’s; achtergrond en accent zijn handmatig bij te stellen.</li>
+<li>9 lettertypen — waaronder een echte 7-segments-LCD met vaag zichtbare gedoofde segmenten — en een schaal van 75% tot 150%.</li>
+</ul>
+<h3>Delen</h3>
+<p>Elke instelling zit in de URL als <code>?config=…</code>. Zet hem bij je favorieten of deel de link — jouw exacte configuratie opent overal.</p>
+<h3>Als app installeren</h3>
+<p>De timer is een PWA en werkt offline. Op iPhone/iPad: Delen → <em>Zet op beginscherm</em>. Op Android: menu → <em>App installeren</em>. In desktop-Chrome: het installatie-icoon in de adresbalk.</p></section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -890,6 +942,7 @@
     });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
+    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;
 

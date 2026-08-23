@@ -37,14 +37,18 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Pomodoro Timer",
-  "url": "https://andreyzarembo.github.io/black_prince/",
-  "description": "Free customizable Pomodoro timer with themes, fonts, until-time countdown and notifications. Available in English and Russian.",
+  "name": "Temporizador Pomodoro — temporizador de tomate en línea personalizable",
+  "url": "https://andreyzarembo.github.io/black_prince/es/",
+  "description": "Temporizador Pomodoro gratuito: intervalos de 5–120 minutos, cuenta atrás hasta una hora dada, 11 temas de color, 9 fuentes incluida una LCD de 7 segmentos, notificaciones. Los ajustes viven en el enlace. Para ordenador y móvil.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
-  "inLanguage": ["en", "es", "de", "fr", "pt", "ja", "ru", "it", "nl", "pl"],
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  "inLanguage": "es",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
 }
 </script>
 <!-- Google tag (gtag.js) -->
@@ -358,6 +362,33 @@
     font-size: 13px;
   }
 
+  /* ---------- About (indexable description) ---------- */
+  .about {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+    color: var(--muted);
+  }
+
+  .about h1 {
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .about h2 { font-size: 16px; color: var(--text); margin: 4px 0 6px; }
+  .about h3 { font-size: 14px; color: var(--accent); margin: 16px 0 4px; }
+  .about p, .about li { font-size: 13.5px; line-height: 1.55; }
+  .about ul { padding-left: 20px; margin: 4px 0; }
+  .about li { margin: 3px 0; }
+  .about code {
+    background: var(--panel);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 12.5px;
+  }
+
   .modal-close {
     position: absolute;
     top: 14px;
@@ -381,38 +412,38 @@
 <body>
 
 <header class="settings">
-  <label class="setting"><span id="labelTheme">Theme</span>
+  <label class="setting"><span id="labelTheme">Tema</span>
     <select id="theme">
-      <option value="system">System</option>
-      <option value="dark">Dark</option>
-      <option value="light">Light</option>
+      <option value="system">Sistema</option>
+      <option value="dark">Oscuro</option>
+      <option value="light">Claro</option>
     </select>
   </label>
-  <label class="setting"><span id="labelPreset">Preset</span>
+  <label class="setting"><span id="labelPreset">Estilo</span>
     <select id="preset">
-      <option value="">Custom</option>
+      <option value="">Propio</option>
     </select>
   </label>
-  <label class="setting"><span id="labelBg">Background</span>
+  <label class="setting"><span id="labelBg">Fondo</span>
     <input type="color" id="bgColor">
   </label>
-  <label class="setting"><span id="labelAccent">Accent</span>
+  <label class="setting"><span id="labelAccent">Acento</span>
     <input type="color" id="accentColor">
   </label>
-  <label class="setting"><span id="labelFont">Font</span>
+  <label class="setting"><span id="labelFont">Fuente</span>
     <select id="font">
-      <option value="0">System</option>
-      <option value="1">Monospace</option>
+      <option value="0">Sistema</option>
+      <option value="1">Monoespaciada</option>
       <option value="2">Serif</option>
       <option value="3">Display</option>
       <option value="4">Digital</option>
-      <option value="5">Pixel</option>
-      <option value="6">Handwritten</option>
+      <option value="5">Píxel</option>
+      <option value="6">Manuscrita</option>
       <option value="7">Comic Sans</option>
-      <option value="8">Segment (LCD)</option>
+      <option value="8">Segmentos (LCD)</option>
     </select>
   </label>
-  <label class="setting"><span id="labelScale">Scale</span>
+  <label class="setting"><span id="labelScale">Escala</span>
     <select id="scale">
       <option value="75">75%</option>
       <option value="90">90%</option>
@@ -422,10 +453,10 @@
       <option value="150">150%</option>
     </select>
   </label>
-  <label class="setting"><span id="labelLang">Language</span>
+  <label class="setting"><span id="labelLang">Idioma</span>
     <select id="langSel"></select>
   </label>
-  <button id="helpBtn" class="help-btn" title="Help">?</button>
+  <button id="helpBtn" class="help-btn" title="Ayuda">?</button>
 </header>
 
 <main>
@@ -453,17 +484,38 @@
   </div>
   <div class="caption" id="caption"></div>
   <div class="controls">
-    <button class="primary" id="startBtn">Старт</button>
-    <button id="resetBtn">Сброс</button>
+    <button class="primary" id="startBtn">Iniciar</button>
+    <button id="resetBtn">Reiniciar</button>
   </div>
 
   <div class="presets">
-    <div class="row-label" id="labelMinutes">Minutes</div>
+    <div class="row-label" id="labelMinutes">Minutos</div>
     <div class="chip-row" id="durationRow"></div>
-    <div class="row-label" id="labelUntil">Until time</div>
+    <div class="row-label" id="labelUntil">Hasta la hora</div>
     <div class="chip-row" id="untilRow"></div>
   </div>
 </main>
+
+<section class="about" id="about"><h1>Temporizador Pomodoro — temporizador de tomate en línea personalizable</h1><h2>Temporizador Pomodoro</h2>
+<p><strong>Pomodoro</strong> es una técnica de concentración: trabaja en intervalos cronometrados (clásicamente 25 minutos) y luego toma un breve descanso.</p>
+<h3>Temporizador</h3>
+<ul>
+<li>Elige una duración en la fila <em>Minutos</em> o pulsa <strong>+</strong> para añadir la tuya. Las duraciones propias se eliminan con ×.</li>
+<li>Los botones <em>Hasta la hora</em> (xx:00, xx:15, xx:30, xx:45) cuentan hasta el momento más cercano — en la hora actual si aún no ha pasado, o en la siguiente — y arrancan solos.</li>
+<li>Inicia o pausa con un clic en los dígitos grandes, con <strong>Espacio</strong> o con el botón. <em>Reiniciar</em> vuelve a la duración completa.</li>
+<li>Los discretos botones <strong>+10 / +1 / −10 / −1</strong> sobre y bajo los dígitos ajustan el tiempo — minutos a la izquierda, segundos a la derecha — antes de empezar o en marcha.</li>
+<li>Al terminar, los dígitos parpadean y suena un aviso; si la pestaña está en segundo plano llega una notificación del navegador (permítela en el primer inicio).</li>
+</ul>
+<h3>Apariencia</h3>
+<ul>
+<li>El <em>Tema</em> sigue al sistema por defecto, o fija Oscuro / Claro.</li>
+<li><em>Estilo</em> ofrece 11 esquemas de color; el fondo y el acento se ajustan a mano.</li>
+<li>9 fuentes — incluida una LCD real de 7 segmentos con segmentos apagados tenues — y escala del 75% al 150%.</li>
+</ul>
+<h3>Compartir</h3>
+<p>Cada ajuste se guarda en la URL como <code>?config=…</code>. Guárdala en favoritos o comparte el enlace: tu configuración exacta se abre en cualquier lugar.</p>
+<h3>Instalar como aplicación</h3>
+<p>El temporizador es una PWA y funciona sin conexión. En iPhone/iPad: Compartir → <em>Añadir a pantalla de inicio</em>. En Android: menú → <em>Instalar aplicación</em>. En Chrome de escritorio: el icono de instalación en la barra de direcciones.</p></section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -890,6 +942,7 @@
     });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
+    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;
 
