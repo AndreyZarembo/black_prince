@@ -53,6 +53,54 @@
   }
 }
 </script>
+<script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Pomodoro Technique?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A time-management method by Francesco Cirillo: work in focused 25-minute intervals — “pomodoros” — separated by short breaks. It is named after a tomato-shaped kitchen timer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why 25 minutes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Long enough for deep focus, short enough to stay fresh. This timer also offers presets from 5 to 120 minutes and custom durations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I count down to a specific time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the xx:00, xx:15, xx:30 and xx:45 buttons — the timer counts down to the nearest such moment and starts automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the timer work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It is a PWA: install it from the browser (Add to Home Screen / Install app) and it keeps working without an internet connection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the timer free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — free, with no ads and no registration. Settings live in the URL, so you can bookmark or share your exact setup."
+      }
+    }
+  ]
+}
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJ3BB3B5V0"></script>
 <script>
@@ -517,7 +565,7 @@
 <h3>Sharing</h3>
 <p>Every setting is stored in the page URL as <code>?config=…</code>. Bookmark it or send the link — your exact setup opens anywhere.</p>
 <h3>Install as an app</h3>
-<p>The timer is a PWA and works offline. On iPhone/iPad: Share → <em>Add to Home Screen</em>. On Android: menu → <em>Install app</em>. On desktop Chrome: the install icon in the address bar.</p></section>
+<p>The timer is a PWA and works offline. On iPhone/iPad: Share → <em>Add to Home Screen</em>. On Android: menu → <em>Install app</em>. On desktop Chrome: the install icon in the address bar.</p><h2>Frequently asked questions</h2><h3>What is the Pomodoro Technique?</h3><p>A time-management method by Francesco Cirillo: work in focused 25-minute intervals — “pomodoros” — separated by short breaks. It is named after a tomato-shaped kitchen timer.</p><h3>Why 25 minutes?</h3><p>Long enough for deep focus, short enough to stay fresh. This timer also offers presets from 5 to 120 minutes and custom durations.</p><h3>How do I count down to a specific time?</h3><p>Use the xx:00, xx:15, xx:30 and xx:45 buttons — the timer counts down to the nearest such moment and starts automatically.</p><h3>Does the timer work offline?</h3><p>Yes. It is a PWA: install it from the browser (Add to Home Screen / Install app) and it keeps working without an internet connection.</p><h3>Is the timer free?</h3><p>Yes — free, with no ads and no registration. Settings live in the URL, so you can bookmark or share your exact setup.</p></section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -944,7 +992,10 @@
     });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
-    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml;
+    const faqHtml = s.faq
+      ? '<h2>' + s.faqTitle + '</h2>' + s.faq.map((f) => '<h3>' + f.q + '</h3><p>' + f.a + '</p>').join('')
+      : '';
+    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml + faqHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;
 

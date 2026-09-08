@@ -55,6 +55,54 @@
   }
 }
 </script>
+<script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qu’est-ce que la technique Pomodoro ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une méthode de gestion du temps de Francesco Cirillo : travailler par intervalles concentrés de 25 minutes — les « pomodoros » — séparés par de courtes pauses. Elle doit son nom à un minuteur de cuisine en forme de tomate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi 25 minutes ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Assez long pour une concentration profonde, assez court pour rester frais. Le minuteur propose aussi des intervalles de 5 à 120 minutes et des durées personnalisées."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment compter jusqu’à une heure précise ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Utilisez les boutons xx:00, xx:15, xx:30 et xx:45 : le minuteur décompte jusqu’au prochain moment de ce type et démarre automatiquement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le minuteur fonctionne-t-il hors ligne ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. C’est une PWA : installez-la depuis le navigateur (Sur l’écran d’accueil / Installer l’application) et elle continue de fonctionner sans connexion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le minuteur est-il gratuit ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui — gratuit, sans publicité ni inscription. Les réglages vivent dans l’URL : vous pouvez enregistrer ou partager votre configuration exacte."
+      }
+    }
+  ]
+}
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJ3BB3B5V0"></script>
 <script>
@@ -519,7 +567,7 @@
 <h3>Partager</h3>
 <p>Chaque réglage est stocké dans l’URL sous <code>?config=…</code>. Mettez-la en favori ou partagez le lien — votre configuration exacte s’ouvre partout.</p>
 <h3>Installer comme application</h3>
-<p>Le minuteur est une PWA et fonctionne hors ligne. Sur iPhone/iPad : Partager → <em>Sur l’écran d’accueil</em>. Sur Android : menu → <em>Installer l’application</em>. Sur Chrome de bureau : l’icône d’installation dans la barre d’adresse.</p></section>
+<p>Le minuteur est une PWA et fonctionne hors ligne. Sur iPhone/iPad : Partager → <em>Sur l’écran d’accueil</em>. Sur Android : menu → <em>Installer l’application</em>. Sur Chrome de bureau : l’icône d’installation dans la barre d’adresse.</p><h2>Questions fréquentes</h2><h3>Qu’est-ce que la technique Pomodoro ?</h3><p>Une méthode de gestion du temps de Francesco Cirillo : travailler par intervalles concentrés de 25 minutes — les « pomodoros » — séparés par de courtes pauses. Elle doit son nom à un minuteur de cuisine en forme de tomate.</p><h3>Pourquoi 25 minutes ?</h3><p>Assez long pour une concentration profonde, assez court pour rester frais. Le minuteur propose aussi des intervalles de 5 à 120 minutes et des durées personnalisées.</p><h3>Comment compter jusqu’à une heure précise ?</h3><p>Utilisez les boutons xx:00, xx:15, xx:30 et xx:45 : le minuteur décompte jusqu’au prochain moment de ce type et démarre automatiquement.</p><h3>Le minuteur fonctionne-t-il hors ligne ?</h3><p>Oui. C’est une PWA : installez-la depuis le navigateur (Sur l’écran d’accueil / Installer l’application) et elle continue de fonctionner sans connexion.</p><h3>Le minuteur est-il gratuit ?</h3><p>Oui — gratuit, sans publicité ni inscription. Les réglages vivent dans l’URL : vous pouvez enregistrer ou partager votre configuration exacte.</p></section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -946,7 +994,10 @@
     });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
-    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml;
+    const faqHtml = s.faq
+      ? '<h2>' + s.faqTitle + '</h2>' + s.faq.map((f) => '<h3>' + f.q + '</h3><p>' + f.a + '</p>').join('')
+      : '';
+    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml + faqHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;
 

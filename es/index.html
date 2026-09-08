@@ -55,6 +55,54 @@
   }
 }
 </script>
+<script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es la técnica Pomodoro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un método de gestión del tiempo de Francesco Cirillo: trabajar en intervalos concentrados de 25 minutos — «pomodoros» — separados por pausas cortas. Debe su nombre a un temporizador de cocina con forma de tomate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué 25 minutos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Suficiente para concentrarse a fondo y lo bastante corto para no agotarse. El temporizador también ofrece intervalos de 5 a 120 minutos y duraciones propias."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo cuento atrás hasta una hora concreta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usa los botones xx:00, xx:15, xx:30 y xx:45: el temporizador cuenta hasta el momento más cercano y arranca solo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Funciona sin conexión?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Es una PWA: instálala desde el navegador (Añadir a pantalla de inicio / Instalar aplicación) y seguirá funcionando sin internet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es gratis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: gratis, sin anuncios y sin registro. Los ajustes viven en la URL, así que puedes guardar o compartir tu configuración exacta."
+      }
+    }
+  ]
+}
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJ3BB3B5V0"></script>
 <script>
@@ -519,7 +567,7 @@
 <h3>Compartir</h3>
 <p>Cada ajuste se guarda en la URL como <code>?config=…</code>. Guárdala en favoritos o comparte el enlace: tu configuración exacta se abre en cualquier lugar.</p>
 <h3>Instalar como aplicación</h3>
-<p>El temporizador es una PWA y funciona sin conexión. En iPhone/iPad: Compartir → <em>Añadir a pantalla de inicio</em>. En Android: menú → <em>Instalar aplicación</em>. En Chrome de escritorio: el icono de instalación en la barra de direcciones.</p></section>
+<p>El temporizador es una PWA y funciona sin conexión. En iPhone/iPad: Compartir → <em>Añadir a pantalla de inicio</em>. En Android: menú → <em>Instalar aplicación</em>. En Chrome de escritorio: el icono de instalación en la barra de direcciones.</p><h2>Preguntas frecuentes</h2><h3>¿Qué es la técnica Pomodoro?</h3><p>Un método de gestión del tiempo de Francesco Cirillo: trabajar en intervalos concentrados de 25 minutos — «pomodoros» — separados por pausas cortas. Debe su nombre a un temporizador de cocina con forma de tomate.</p><h3>¿Por qué 25 minutos?</h3><p>Suficiente para concentrarse a fondo y lo bastante corto para no agotarse. El temporizador también ofrece intervalos de 5 a 120 minutos y duraciones propias.</p><h3>¿Cómo cuento atrás hasta una hora concreta?</h3><p>Usa los botones xx:00, xx:15, xx:30 y xx:45: el temporizador cuenta hasta el momento más cercano y arranca solo.</p><h3>¿Funciona sin conexión?</h3><p>Sí. Es una PWA: instálala desde el navegador (Añadir a pantalla de inicio / Instalar aplicación) y seguirá funcionando sin internet.</p><h3>¿Es gratis?</h3><p>Sí: gratis, sin anuncios y sin registro. Los ajustes viven en la URL, así que puedes guardar o compartir tu configuración exacta.</p></section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -946,7 +994,10 @@
     });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
-    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml;
+    const faqHtml = s.faq
+      ? '<h2>' + s.faqTitle + '</h2>' + s.faq.map((f) => '<h3>' + f.q + '</h3><p>' + f.a + '</p>').join('')
+      : '';
+    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml + faqHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;
 

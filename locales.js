@@ -35,6 +35,14 @@ window.LOCALES = {
     clickHint: 'Click — start / pause',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Help',
+    faqTitle: 'Frequently asked questions',
+    faq: [
+      { q: 'What is the Pomodoro Technique?', a: 'A time-management method by Francesco Cirillo: work in focused 25-minute intervals — “pomodoros” — separated by short breaks. It is named after a tomato-shaped kitchen timer.' },
+      { q: 'Why 25 minutes?', a: 'Long enough for deep focus, short enough to stay fresh. This timer also offers presets from 5 to 120 minutes and custom durations.' },
+      { q: 'How do I count down to a specific time?', a: 'Use the xx:00, xx:15, xx:30 and xx:45 buttons — the timer counts down to the nearest such moment and starts automatically.' },
+      { q: 'Does the timer work offline?', a: 'Yes. It is a PWA: install it from the browser (Add to Home Screen / Install app) and it keeps working without an internet connection.' },
+      { q: 'Is the timer free?', a: 'Yes — free, with no ads and no registration. Settings live in the URL, so you can bookmark or share your exact setup.' },
+    ],
     helpHtml: `
 <h2>Pomodoro Timer</h2>
 <p><strong>Pomodoro</strong> is a focus technique: work in timed sprints (classically 25 minutes), then take a short break.</p>
@@ -77,6 +85,14 @@ window.LOCALES = {
     clickHint: 'Clic — iniciar / pausar',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Ayuda',
+    faqTitle: 'Preguntas frecuentes',
+    faq: [
+      { q: '¿Qué es la técnica Pomodoro?', a: 'Un método de gestión del tiempo de Francesco Cirillo: trabajar en intervalos concentrados de 25 minutos — «pomodoros» — separados por pausas cortas. Debe su nombre a un temporizador de cocina con forma de tomate.' },
+      { q: '¿Por qué 25 minutos?', a: 'Suficiente para concentrarse a fondo y lo bastante corto para no agotarse. El temporizador también ofrece intervalos de 5 a 120 minutos y duraciones propias.' },
+      { q: '¿Cómo cuento atrás hasta una hora concreta?', a: 'Usa los botones xx:00, xx:15, xx:30 y xx:45: el temporizador cuenta hasta el momento más cercano y arranca solo.' },
+      { q: '¿Funciona sin conexión?', a: 'Sí. Es una PWA: instálala desde el navegador (Añadir a pantalla de inicio / Instalar aplicación) y seguirá funcionando sin internet.' },
+      { q: '¿Es gratis?', a: 'Sí: gratis, sin anuncios y sin registro. Los ajustes viven en la URL, así que puedes guardar o compartir tu configuración exacta.' },
+    ],
     helpHtml: `
 <h2>Temporizador Pomodoro</h2>
 <p><strong>Pomodoro</strong> es una técnica de concentración: trabaja en intervalos cronometrados (clásicamente 25 minutos) y luego toma un breve descanso.</p>
@@ -119,6 +135,14 @@ window.LOCALES = {
     clickHint: 'Klick — Start / Pause',
     minUnit: 'Min', secUnit: 's',
     helpTitle: 'Hilfe',
+    faqTitle: 'Häufige Fragen',
+    faq: [
+      { q: 'Was ist die Pomodoro-Technik?', a: 'Eine Zeitmanagement-Methode von Francesco Cirillo: Arbeit in fokussierten 25-Minuten-Intervallen — „Pomodori“ — mit kurzen Pausen dazwischen. Benannt nach einer tomatenförmigen Küchenuhr.' },
+      { q: 'Warum 25 Minuten?', a: 'Lang genug für tiefe Konzentration, kurz genug, um frisch zu bleiben. Der Timer bietet außerdem Intervalle von 5 bis 120 Minuten und eigene Dauern.' },
+      { q: 'Wie zähle ich bis zu einer Uhrzeit herunter?', a: 'Mit den Knöpfen xx:00, xx:15, xx:30 und xx:45 — der Timer läuft bis zum nächsten solchen Zeitpunkt und startet automatisch.' },
+      { q: 'Funktioniert der Timer offline?', a: 'Ja. Er ist eine PWA: über den Browser installieren (Zum Home-Bildschirm / App installieren) — und er läuft ohne Internetverbindung weiter.' },
+      { q: 'Ist der Timer kostenlos?', a: 'Ja — kostenlos, ohne Werbung und ohne Registrierung. Die Einstellungen stecken in der URL, also lässt sich die exakte Konfiguration speichern oder teilen.' },
+    ],
     helpHtml: `
 <h2>Pomodoro-Timer</h2>
 <p><strong>Pomodoro</strong> ist eine Fokustechnik: Arbeite in getakteten Sprints (klassisch 25 Minuten) und mach dann eine kurze Pause.</p>
@@ -161,6 +185,14 @@ window.LOCALES = {
     clickHint: 'Clic — démarrer / pause',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Aide',
+    faqTitle: 'Questions fréquentes',
+    faq: [
+      { q: 'Qu’est-ce que la technique Pomodoro ?', a: 'Une méthode de gestion du temps de Francesco Cirillo : travailler par intervalles concentrés de 25 minutes — les « pomodoros » — séparés par de courtes pauses. Elle doit son nom à un minuteur de cuisine en forme de tomate.' },
+      { q: 'Pourquoi 25 minutes ?', a: 'Assez long pour une concentration profonde, assez court pour rester frais. Le minuteur propose aussi des intervalles de 5 à 120 minutes et des durées personnalisées.' },
+      { q: 'Comment compter jusqu’à une heure précise ?', a: 'Utilisez les boutons xx:00, xx:15, xx:30 et xx:45 : le minuteur décompte jusqu’au prochain moment de ce type et démarre automatiquement.' },
+      { q: 'Le minuteur fonctionne-t-il hors ligne ?', a: 'Oui. C’est une PWA : installez-la depuis le navigateur (Sur l’écran d’accueil / Installer l’application) et elle continue de fonctionner sans connexion.' },
+      { q: 'Le minuteur est-il gratuit ?', a: 'Oui — gratuit, sans publicité ni inscription. Les réglages vivent dans l’URL : vous pouvez enregistrer ou partager votre configuration exacte.' },
+    ],
     helpHtml: `
 <h2>Minuteur Pomodoro</h2>
 <p><strong>Pomodoro</strong> est une technique de concentration : travaillez par sprints chronométrés (classiquement 25 minutes), puis faites une courte pause.</p>
@@ -203,6 +235,14 @@ window.LOCALES = {
     clickHint: 'Clique — iniciar / pausar',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Ajuda',
+    faqTitle: 'Perguntas frequentes',
+    faq: [
+      { q: 'O que é a técnica Pomodoro?', a: 'Um método de gestão do tempo de Francesco Cirillo: trabalhar em intervalos concentrados de 25 minutos — “pomodoros” — separados por pausas curtas. O nome vem de um timer de cozinha em forma de tomate.' },
+      { q: 'Por que 25 minutos?', a: 'Tempo suficiente para foco profundo e curto o bastante para não cansar. O timer também oferece intervalos de 5 a 120 minutos e durações próprias.' },
+      { q: 'Como faço contagem até uma hora específica?', a: 'Use os botões xx:00, xx:15, xx:30 e xx:45 — o timer conta até o momento mais próximo e inicia sozinho.' },
+      { q: 'O timer funciona offline?', a: 'Sim. É um PWA: instale pelo navegador (Adicionar à Tela de Início / Instalar app) e ele continua funcionando sem internet.' },
+      { q: 'O timer é gratuito?', a: 'Sim — gratuito, sem anúncios e sem cadastro. As configurações ficam na URL, então você pode salvar ou compartilhar sua configuração exata.' },
+    ],
     helpHtml: `
 <h2>Temporizador Pomodoro</h2>
 <p><strong>Pomodoro</strong> é uma técnica de foco: trabalhe em intervalos cronometrados (classicamente 25 minutos) e depois faça uma pausa curta.</p>
@@ -245,6 +285,14 @@ window.LOCALES = {
     clickHint: 'クリックで開始 / 一時停止',
     minUnit: '分', secUnit: '秒',
     helpTitle: 'ヘルプ',
+    faqTitle: 'よくある質問',
+    faq: [
+      { q: 'ポモドーロ・テクニックとは？', a: 'フランチェスコ・シリロが考案した時間管理術です。25分の集中インターバル（ポモドーロ）と短い休憩を交互に繰り返します。トマト型のキッチンタイマーが名前の由来です。' },
+      { q: 'なぜ25分なのですか？', a: '深く集中するには十分長く、疲れずに続けるには十分短い長さだからです。このタイマーには5〜120分のプリセットとカスタム時間もあります。' },
+      { q: '指定した時刻までのカウントダウンはできますか？', a: 'xx:00、xx:15、xx:30、xx:45のボタンを使ってください。直近のその時刻までカウントダウンし、自動的にスタートします。' },
+      { q: 'オフラインでも動きますか？', a: 'はい。PWAなのでブラウザからインストールすれば（ホーム画面に追加／アプリをインストール）、インターネットなしでも動作します。' },
+      { q: '無料ですか？', a: 'はい。無料で、広告も登録もありません。設定はURLに保存されるので、ブックマークや共有でそのままの設定を開けます。' },
+    ],
     helpHtml: `
 <h2>ポモドーロタイマー</h2>
 <p><strong>ポモドーロ</strong>は集中のためのテクニックです。時間を区切って作業し（基本は25分）、短い休憩を挟みます。</p>
@@ -287,6 +335,14 @@ window.LOCALES = {
     clickHint: 'Клик — старт / пауза',
     minUnit: 'мин', secUnit: 'с',
     helpTitle: 'Справка',
+    faqTitle: 'Частые вопросы',
+    faq: [
+      { q: 'Что такое техника Pomodoro?', a: 'Метод управления временем Франческо Чирилло: работа сфокусированными интервалами по 25 минут — «помидорами» — с короткими перерывами между ними. Назван в честь кухонного таймера в форме помидора.' },
+      { q: 'Почему 25 минут?', a: 'Достаточно долго для глубокой концентрации и достаточно коротко, чтобы не выгорать. В таймере есть пресеты от 5 до 120 минут и свои длительности.' },
+      { q: 'Как поставить отсчёт до конкретного времени?', a: 'Кнопки xx:00, xx:15, xx:30 и xx:45 — таймер отсчитает до ближайшей такой отметки и запустится сам.' },
+      { q: 'Работает ли таймер офлайн?', a: 'Да. Это PWA: установите его из браузера («На экран „Домой“» / «Установить приложение») — и он работает без интернета.' },
+      { q: 'Таймер бесплатный?', a: 'Да: бесплатно, без рекламы и без регистрации. Настройки хранятся в ссылке — конфигурацию можно сохранить в закладки или отправить кому-то.' },
+    ],
     helpHtml: `
 <h2>Pomodoro таймер</h2>
 <p><strong>Pomodoro</strong> — техника концентрации: работайте спринтами по таймеру (классика — 25 минут), затем короткий перерыв.</p>
@@ -329,6 +385,14 @@ window.LOCALES = {
     clickHint: 'Clic — avvia / pausa',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Guida',
+    faqTitle: 'Domande frequenti',
+    faq: [
+      { q: 'Che cos’è la tecnica del pomodoro?', a: 'Un metodo di gestione del tempo di Francesco Cirillo: lavorare in intervalli concentrati di 25 minuti — i «pomodori» — separati da brevi pause. Prende il nome da un timer da cucina a forma di pomodoro.' },
+      { q: 'Perché 25 minuti?', a: 'Abbastanza lunghi per una concentrazione profonda, abbastanza brevi per restare freschi. Il timer offre anche intervalli da 5 a 120 minuti e durate personalizzate.' },
+      { q: 'Come conto alla rovescia fino a un orario preciso?', a: 'Usa i pulsanti xx:00, xx:15, xx:30 e xx:45: il timer conta fino al momento più vicino e parte da solo.' },
+      { q: 'Il timer funziona offline?', a: 'Sì. È una PWA: installala dal browser (Aggiungi alla schermata Home / Installa app) e continuerà a funzionare senza connessione.' },
+      { q: 'Il timer è gratuito?', a: 'Sì — gratuito, senza pubblicità e senza registrazione. Le impostazioni vivono nell’URL: puoi salvare o condividere la tua configurazione esatta.' },
+    ],
     helpHtml: `
 <h2>Timer Pomodoro</h2>
 <p><strong>Pomodoro</strong> è una tecnica di concentrazione: lavora a sprint cronometrati (classicamente 25 minuti), poi fai una breve pausa.</p>
@@ -371,6 +435,14 @@ window.LOCALES = {
     clickHint: 'Klik — start / pauze',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Hulp',
+    faqTitle: 'Veelgestelde vragen',
+    faq: [
+      { q: 'Wat is de pomodoro-techniek?', a: 'Een timemanagementmethode van Francesco Cirillo: werken in geconcentreerde blokken van 25 minuten — “pomodoro’s” — met korte pauzes ertussen. Genoemd naar een kookwekker in tomaatvorm.' },
+      { q: 'Waarom 25 minuten?', a: 'Lang genoeg voor diepe focus, kort genoeg om fris te blijven. De timer biedt ook intervallen van 5 tot 120 minuten en eigen duren.' },
+      { q: 'Hoe tel ik af naar een specifiek tijdstip?', a: 'Gebruik de knoppen xx:00, xx:15, xx:30 en xx:45 — de timer telt af naar het dichtstbijzijnde moment en start vanzelf.' },
+      { q: 'Werkt de timer offline?', a: 'Ja. Het is een PWA: installeer hem vanuit de browser (Zet op beginscherm / App installeren) en hij blijft zonder internet werken.' },
+      { q: 'Is de timer gratis?', a: 'Ja — gratis, zonder advertenties en zonder registratie. Instellingen zitten in de URL, dus je exacte configuratie is te bewaren of te delen.' },
+    ],
     helpHtml: `
 <h2>Pomodoro-timer</h2>
 <p><strong>Pomodoro</strong> is een focustechniek: werk in getimede sprints (klassiek 25 minuten) en neem daarna een korte pauze.</p>
@@ -413,6 +485,14 @@ window.LOCALES = {
     clickHint: 'Klik — start / pauza',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Pomoc',
+    faqTitle: 'Częste pytania',
+    faq: [
+      { q: 'Czym jest technika Pomodoro?', a: 'Metoda zarządzania czasem Francesco Cirillo: praca w skupionych interwałach po 25 minut — „pomidorach” — przedzielonych krótkimi przerwami. Nazwa pochodzi od kuchennego minutnika w kształcie pomidora.' },
+      { q: 'Dlaczego 25 minut?', a: 'Wystarczająco długo na głęboką koncentrację i dość krótko, by się nie wypalić. Timer oferuje też interwały od 5 do 120 minut i własne czasy.' },
+      { q: 'Jak odliczać do konkretnej godziny?', a: 'Użyj przycisków xx:00, xx:15, xx:30 i xx:45 — timer odliczy do najbliższego takiego momentu i wystartuje sam.' },
+      { q: 'Czy timer działa offline?', a: 'Tak. To PWA: zainstaluj go z przeglądarki (Do ekranu początkowego / Zainstaluj aplikację), a będzie działał bez internetu.' },
+      { q: 'Czy timer jest darmowy?', a: 'Tak — darmowy, bez reklam i bez rejestracji. Ustawienia mieszkają w adresie URL, więc dokładną konfigurację można zapisać lub komuś wysłać.' },
+    ],
     helpHtml: `
 <h2>Timer Pomodoro</h2>
 <p><strong>Pomodoro</strong> to technika koncentracji: pracuj w odmierzanych sprintach (klasycznie 25 minut), a potem zrób krótką przerwę.</p>

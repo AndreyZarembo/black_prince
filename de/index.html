@@ -55,6 +55,54 @@
   }
 }
 </script>
+<script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist die Pomodoro-Technik?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine Zeitmanagement-Methode von Francesco Cirillo: Arbeit in fokussierten 25-Minuten-Intervallen — „Pomodori“ — mit kurzen Pausen dazwischen. Benannt nach einer tomatenförmigen Küchenuhr."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum 25 Minuten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lang genug für tiefe Konzentration, kurz genug, um frisch zu bleiben. Der Timer bietet außerdem Intervalle von 5 bis 120 Minuten und eigene Dauern."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie zähle ich bis zu einer Uhrzeit herunter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mit den Knöpfen xx:00, xx:15, xx:30 und xx:45 — der Timer läuft bis zum nächsten solchen Zeitpunkt und startet automatisch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Funktioniert der Timer offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Er ist eine PWA: über den Browser installieren (Zum Home-Bildschirm / App installieren) — und er läuft ohne Internetverbindung weiter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist der Timer kostenlos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja — kostenlos, ohne Werbung und ohne Registrierung. Die Einstellungen stecken in der URL, also lässt sich die exakte Konfiguration speichern oder teilen."
+      }
+    }
+  ]
+}
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJ3BB3B5V0"></script>
 <script>
@@ -519,7 +567,7 @@
 <h3>Teilen</h3>
 <p>Jede Einstellung steckt in der URL als <code>?config=…</code>. Als Lesezeichen speichern oder den Link teilen — die exakte Konfiguration öffnet sich überall.</p>
 <h3>Als App installieren</h3>
-<p>Der Timer ist eine PWA und funktioniert offline. iPhone/iPad: Teilen → <em>Zum Home-Bildschirm</em>. Android: Menü → <em>App installieren</em>. Desktop-Chrome: das Installationssymbol in der Adressleiste.</p></section>
+<p>Der Timer ist eine PWA und funktioniert offline. iPhone/iPad: Teilen → <em>Zum Home-Bildschirm</em>. Android: Menü → <em>App installieren</em>. Desktop-Chrome: das Installationssymbol in der Adressleiste.</p><h2>Häufige Fragen</h2><h3>Was ist die Pomodoro-Technik?</h3><p>Eine Zeitmanagement-Methode von Francesco Cirillo: Arbeit in fokussierten 25-Minuten-Intervallen — „Pomodori“ — mit kurzen Pausen dazwischen. Benannt nach einer tomatenförmigen Küchenuhr.</p><h3>Warum 25 Minuten?</h3><p>Lang genug für tiefe Konzentration, kurz genug, um frisch zu bleiben. Der Timer bietet außerdem Intervalle von 5 bis 120 Minuten und eigene Dauern.</p><h3>Wie zähle ich bis zu einer Uhrzeit herunter?</h3><p>Mit den Knöpfen xx:00, xx:15, xx:30 und xx:45 — der Timer läuft bis zum nächsten solchen Zeitpunkt und startet automatisch.</p><h3>Funktioniert der Timer offline?</h3><p>Ja. Er ist eine PWA: über den Browser installieren (Zum Home-Bildschirm / App installieren) — und er läuft ohne Internetverbindung weiter.</p><h3>Ist der Timer kostenlos?</h3><p>Ja — kostenlos, ohne Werbung und ohne Registrierung. Die Einstellungen stecken in der URL, also lässt sich die exakte Konfiguration speichern oder teilen.</p></section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -946,7 +994,10 @@
     });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
-    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml;
+    const faqHtml = s.faq
+      ? '<h2>' + s.faqTitle + '</h2>' + s.faq.map((f) => '<h3>' + f.q + '</h3><p>' + f.a + '</p>').join('')
+      : '';
+    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml + faqHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;
 

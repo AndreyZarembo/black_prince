@@ -55,6 +55,54 @@
   }
 }
 </script>
+<script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ポモドーロ・テクニックとは？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "フランチェスコ・シリロが考案した時間管理術です。25分の集中インターバル（ポモドーロ）と短い休憩を交互に繰り返します。トマト型のキッチンタイマーが名前の由来です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "なぜ25分なのですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "深く集中するには十分長く、疲れずに続けるには十分短い長さだからです。このタイマーには5〜120分のプリセットとカスタム時間もあります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "指定した時刻までのカウントダウンはできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "xx:00、xx:15、xx:30、xx:45のボタンを使ってください。直近のその時刻までカウントダウンし、自動的にスタートします。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "オフラインでも動きますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。PWAなのでブラウザからインストールすれば（ホーム画面に追加／アプリをインストール）、インターネットなしでも動作します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "無料ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。無料で、広告も登録もありません。設定はURLに保存されるので、ブックマークや共有でそのままの設定を開けます。"
+      }
+    }
+  ]
+}
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJ3BB3B5V0"></script>
 <script>
@@ -519,7 +567,7 @@
 <h3>共有</h3>
 <p>すべての設定はURLの <code>?config=…</code> に保存されます。ブックマークやリンクの共有で、同じ設定がどこでも開きます。</p>
 <h3>アプリとしてインストール</h3>
-<p>このタイマーはPWAで、オフラインでも動きます。iPhone/iPad: 共有 → <em>ホーム画面に追加</em>。Android: メニュー → <em>アプリをインストール</em>。PCのChrome: アドレスバーのインストールアイコン。</p></section>
+<p>このタイマーはPWAで、オフラインでも動きます。iPhone/iPad: 共有 → <em>ホーム画面に追加</em>。Android: メニュー → <em>アプリをインストール</em>。PCのChrome: アドレスバーのインストールアイコン。</p><h2>よくある質問</h2><h3>ポモドーロ・テクニックとは？</h3><p>フランチェスコ・シリロが考案した時間管理術です。25分の集中インターバル（ポモドーロ）と短い休憩を交互に繰り返します。トマト型のキッチンタイマーが名前の由来です。</p><h3>なぜ25分なのですか？</h3><p>深く集中するには十分長く、疲れずに続けるには十分短い長さだからです。このタイマーには5〜120分のプリセットとカスタム時間もあります。</p><h3>指定した時刻までのカウントダウンはできますか？</h3><p>xx:00、xx:15、xx:30、xx:45のボタンを使ってください。直近のその時刻までカウントダウンし、自動的にスタートします。</p><h3>オフラインでも動きますか？</h3><p>はい。PWAなのでブラウザからインストールすれば（ホーム画面に追加／アプリをインストール）、インターネットなしでも動作します。</p><h3>無料ですか？</h3><p>はい。無料で、広告も登録もありません。設定はURLに保存されるので、ブックマークや共有でそのままの設定を開けます。</p></section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -946,7 +994,10 @@
     });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
-    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml;
+    const faqHtml = s.faq
+      ? '<h2>' + s.faqTitle + '</h2>' + s.faq.map((f) => '<h3>' + f.q + '</h3><p>' + f.a + '</p>').join('')
+      : '';
+    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml + faqHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;
 

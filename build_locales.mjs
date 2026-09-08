@@ -95,11 +95,31 @@ function build(code) {
   h = subOnce(h, /(<button id="resetBtn">)[^<]*(<\/button>)/, `$1${esc(s.reset)}$2`);
   h = subOnce(h, /(<button id="helpBtn" class="help-btn" title=")[^"]*(">)/, `$1${esc(s.helpTitle)}$2`);
 
-  // Видимая SEO-секция: h1 + текст справки
+  // Видимая SEO-секция: h1 + текст справки + FAQ
+  const faqHtml =
+    `<h2>${esc(s.faqTitle)}</h2>` +
+    s.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('');
   h = subOnce(
     h,
     /<section class="about" id="about">[\s\S]*?<\/section>/,
-    `<section class="about" id="about"><h1>${esc(s.docTitle)}</h1>${s.helpHtml.trim()}</section>`,
+    `<section class="about" id="about"><h1>${esc(s.docTitle)}</h1>${s.helpHtml.trim()}${faqHtml}</section>`,
+  );
+
+  // FAQPage-разметка (заменяется при пересборке)
+  h = h.replace(/\n?<script type="application\/ld\+json" id="faq-ld">[\s\S]*?<\/script>/, '');
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: s.faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+  h = subOnce(
+    h,
+    /(<script type="application\/ld\+json">[\s\S]*?<\/script>)/,
+    `$1\n<script type="application/ld+json" id="faq-ld">\n${JSON.stringify(faqLd, null, 2)}\n</script>`,
   );
 
   // Языковые подстраницы: относительные пути к ресурсам и язык страницы

@@ -55,6 +55,54 @@
   }
 }
 </script>
+<script type="application/ld+json" id="faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Czym jest technika Pomodoro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Metoda zarządzania czasem Francesco Cirillo: praca w skupionych interwałach po 25 minut — „pomidorach” — przedzielonych krótkimi przerwami. Nazwa pochodzi od kuchennego minutnika w kształcie pomidora."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dlaczego 25 minut?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wystarczająco długo na głęboką koncentrację i dość krótko, by się nie wypalić. Timer oferuje też interwały od 5 do 120 minut i własne czasy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak odliczać do konkretnej godziny?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Użyj przycisków xx:00, xx:15, xx:30 i xx:45 — timer odliczy do najbliższego takiego momentu i wystartuje sam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy timer działa offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak. To PWA: zainstaluj go z przeglądarki (Do ekranu początkowego / Zainstaluj aplikację), a będzie działał bez internetu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy timer jest darmowy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak — darmowy, bez reklam i bez rejestracji. Ustawienia mieszkają w adresie URL, więc dokładną konfigurację można zapisać lub komuś wysłać."
+      }
+    }
+  ]
+}
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJ3BB3B5V0"></script>
 <script>
@@ -519,7 +567,7 @@
 <h3>Udostępnianie</h3>
 <p>Każde ustawienie jest zapisane w adresie URL jako <code>?config=…</code>. Dodaj do zakładek lub wyślij link — twoja dokładna konfiguracja otworzy się wszędzie.</p>
 <h3>Instalacja jako aplikacja</h3>
-<p>Timer to PWA i działa offline. Na iPhone/iPad: Udostępnij → <em>Do ekranu początkowego</em>. Na Androidzie: menu → <em>Zainstaluj aplikację</em>. W Chrome na komputerze: ikona instalacji w pasku adresu.</p></section>
+<p>Timer to PWA i działa offline. Na iPhone/iPad: Udostępnij → <em>Do ekranu początkowego</em>. Na Androidzie: menu → <em>Zainstaluj aplikację</em>. W Chrome na komputerze: ikona instalacji w pasku adresu.</p><h2>Częste pytania</h2><h3>Czym jest technika Pomodoro?</h3><p>Metoda zarządzania czasem Francesco Cirillo: praca w skupionych interwałach po 25 minut — „pomidorach” — przedzielonych krótkimi przerwami. Nazwa pochodzi od kuchennego minutnika w kształcie pomidora.</p><h3>Dlaczego 25 minut?</h3><p>Wystarczająco długo na głęboką koncentrację i dość krótko, by się nie wypalić. Timer oferuje też interwały od 5 do 120 minut i własne czasy.</p><h3>Jak odliczać do konkretnej godziny?</h3><p>Użyj przycisków xx:00, xx:15, xx:30 i xx:45 — timer odliczy do najbliższego takiego momentu i wystartuje sam.</p><h3>Czy timer działa offline?</h3><p>Tak. To PWA: zainstaluj go z przeglądarki (Do ekranu początkowego / Zainstaluj aplikację), a będzie działał bez internetu.</p><h3>Czy timer jest darmowy?</h3><p>Tak — darmowy, bez reklam i bez rejestracji. Ustawienia mieszkają w adresie URL, więc dokładną konfigurację można zapisać lub komuś wysłać.</p></section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -946,7 +994,10 @@
     });
     document.getElementById('helpBtn').title = s.helpTitle;
     document.getElementById('helpBody').innerHTML = s.helpHtml;
-    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml;
+    const faqHtml = s.faq
+      ? '<h2>' + s.faqTitle + '</h2>' + s.faq.map((f) => '<h3>' + f.q + '</h3><p>' + f.a + '</p>').join('')
+      : '';
+    document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml + faqHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;
 
