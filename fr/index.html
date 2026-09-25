@@ -418,9 +418,27 @@
   .about {
     max-width: 640px;
     margin: 0 auto;
-    padding: 24px 20px 48px;
+    padding: 4px 20px 40px;
     color: var(--muted);
   }
+
+  .about summary {
+    cursor: pointer;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--muted);
+    opacity: 0.75;
+    padding: 8px;
+    border-radius: 9px;
+    list-style: none;
+    transition: opacity 0.15s, background 0.15s;
+  }
+
+  .about summary::-webkit-details-marker { display: none; }
+  .about summary::before { content: '▸ '; }
+  .about details[open] summary::before { content: '▾ '; }
+  .about summary:hover { opacity: 1; background: var(--panel); }
+  .about details[open] summary { margin-bottom: 10px; }
 
   .about h1 {
     font-size: 18px;
@@ -548,7 +566,10 @@
   </div>
 </main>
 
-<section class="about" id="about"><h1>Minuteur Pomodoro — minuteur tomate en ligne personnalisable</h1><h2>Minuteur Pomodoro</h2>
+<section class="about">
+<details>
+<summary id="aboutToggle">À propos du minuteur &amp; FAQ</summary>
+<div id="about"><h1>Minuteur Pomodoro — minuteur tomate en ligne personnalisable</h1><h2>Minuteur Pomodoro</h2>
 <p><strong>Pomodoro</strong> est une technique de concentration : travaillez par sprints chronométrés (classiquement 25 minutes), puis faites une courte pause.</p>
 <h3>Minuteur</h3>
 <ul>
@@ -567,7 +588,9 @@
 <h3>Partager</h3>
 <p>Chaque réglage est stocké dans l’URL sous <code>?config=…</code>. Mettez-la en favori ou partagez le lien — votre configuration exacte s’ouvre partout.</p>
 <h3>Installer comme application</h3>
-<p>Le minuteur est une PWA et fonctionne hors ligne. Sur iPhone/iPad : Partager → <em>Sur l’écran d’accueil</em>. Sur Android : menu → <em>Installer l’application</em>. Sur Chrome de bureau : l’icône d’installation dans la barre d’adresse.</p><h2>Questions fréquentes</h2><h3>Qu’est-ce que la technique Pomodoro ?</h3><p>Une méthode de gestion du temps de Francesco Cirillo : travailler par intervalles concentrés de 25 minutes — les « pomodoros » — séparés par de courtes pauses. Elle doit son nom à un minuteur de cuisine en forme de tomate.</p><h3>Pourquoi 25 minutes ?</h3><p>Assez long pour une concentration profonde, assez court pour rester frais. Le minuteur propose aussi des intervalles de 5 à 120 minutes et des durées personnalisées.</p><h3>Comment compter jusqu’à une heure précise ?</h3><p>Utilisez les boutons xx:00, xx:15, xx:30 et xx:45 : le minuteur décompte jusqu’au prochain moment de ce type et démarre automatiquement.</p><h3>Le minuteur fonctionne-t-il hors ligne ?</h3><p>Oui. C’est une PWA : installez-la depuis le navigateur (Sur l’écran d’accueil / Installer l’application) et elle continue de fonctionner sans connexion.</p><h3>Le minuteur est-il gratuit ?</h3><p>Oui — gratuit, sans publicité ni inscription. Les réglages vivent dans l’URL : vous pouvez enregistrer ou partager votre configuration exacte.</p></section>
+<p>Le minuteur est une PWA et fonctionne hors ligne. Sur iPhone/iPad : Partager → <em>Sur l’écran d’accueil</em>. Sur Android : menu → <em>Installer l’application</em>. Sur Chrome de bureau : l’icône d’installation dans la barre d’adresse.</p><h2>Questions fréquentes</h2><h3>Qu’est-ce que la technique Pomodoro ?</h3><p>Une méthode de gestion du temps de Francesco Cirillo : travailler par intervalles concentrés de 25 minutes — les « pomodoros » — séparés par de courtes pauses. Elle doit son nom à un minuteur de cuisine en forme de tomate.</p><h3>Pourquoi 25 minutes ?</h3><p>Assez long pour une concentration profonde, assez court pour rester frais. Le minuteur propose aussi des intervalles de 5 à 120 minutes et des durées personnalisées.</p><h3>Comment compter jusqu’à une heure précise ?</h3><p>Utilisez les boutons xx:00, xx:15, xx:30 et xx:45 : le minuteur décompte jusqu’au prochain moment de ce type et démarre automatiquement.</p><h3>Le minuteur fonctionne-t-il hors ligne ?</h3><p>Oui. C’est une PWA : installez-la depuis le navigateur (Sur l’écran d’accueil / Installer l’application) et elle continue de fonctionner sans connexion.</p><h3>Le minuteur est-il gratuit ?</h3><p>Oui — gratuit, sans publicité ni inscription. Les réglages vivent dans l’URL : vous pouvez enregistrer ou partager votre configuration exacte.</p></div>
+</details>
+</section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -997,6 +1020,7 @@
     const faqHtml = s.faq
       ? '<h2>' + s.faqTitle + '</h2>' + s.faq.map((f) => '<h3>' + f.q + '</h3><p>' + f.a + '</p>').join('')
       : '';
+    document.getElementById('aboutToggle').textContent = s.aboutToggle;
     document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml + faqHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;

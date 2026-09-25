@@ -418,9 +418,27 @@
   .about {
     max-width: 640px;
     margin: 0 auto;
-    padding: 24px 20px 48px;
+    padding: 4px 20px 40px;
     color: var(--muted);
   }
+
+  .about summary {
+    cursor: pointer;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--muted);
+    opacity: 0.75;
+    padding: 8px;
+    border-radius: 9px;
+    list-style: none;
+    transition: opacity 0.15s, background 0.15s;
+  }
+
+  .about summary::-webkit-details-marker { display: none; }
+  .about summary::before { content: '▸ '; }
+  .about details[open] summary::before { content: '▾ '; }
+  .about summary:hover { opacity: 1; background: var(--panel); }
+  .about details[open] summary { margin-bottom: 10px; }
 
   .about h1 {
     font-size: 18px;
@@ -548,7 +566,10 @@
   </div>
 </main>
 
-<section class="about" id="about"><h1>Pomodoro-timer — aanpasbare online tomaat-timer</h1><h2>Pomodoro-timer</h2>
+<section class="about">
+<details>
+<summary id="aboutToggle">Over de timer &amp; veelgestelde vragen</summary>
+<div id="about"><h1>Pomodoro-timer — aanpasbare online tomaat-timer</h1><h2>Pomodoro-timer</h2>
 <p><strong>Pomodoro</strong> is een focustechniek: werk in getimede sprints (klassiek 25 minuten) en neem daarna een korte pauze.</p>
 <h3>Timer</h3>
 <ul>
@@ -567,7 +588,9 @@
 <h3>Delen</h3>
 <p>Elke instelling zit in de URL als <code>?config=…</code>. Zet hem bij je favorieten of deel de link — jouw exacte configuratie opent overal.</p>
 <h3>Als app installeren</h3>
-<p>De timer is een PWA en werkt offline. Op iPhone/iPad: Delen → <em>Zet op beginscherm</em>. Op Android: menu → <em>App installeren</em>. In desktop-Chrome: het installatie-icoon in de adresbalk.</p><h2>Veelgestelde vragen</h2><h3>Wat is de pomodoro-techniek?</h3><p>Een timemanagementmethode van Francesco Cirillo: werken in geconcentreerde blokken van 25 minuten — “pomodoro’s” — met korte pauzes ertussen. Genoemd naar een kookwekker in tomaatvorm.</p><h3>Waarom 25 minuten?</h3><p>Lang genoeg voor diepe focus, kort genoeg om fris te blijven. De timer biedt ook intervallen van 5 tot 120 minuten en eigen duren.</p><h3>Hoe tel ik af naar een specifiek tijdstip?</h3><p>Gebruik de knoppen xx:00, xx:15, xx:30 en xx:45 — de timer telt af naar het dichtstbijzijnde moment en start vanzelf.</p><h3>Werkt de timer offline?</h3><p>Ja. Het is een PWA: installeer hem vanuit de browser (Zet op beginscherm / App installeren) en hij blijft zonder internet werken.</p><h3>Is de timer gratis?</h3><p>Ja — gratis, zonder advertenties en zonder registratie. Instellingen zitten in de URL, dus je exacte configuratie is te bewaren of te delen.</p></section>
+<p>De timer is een PWA en werkt offline. Op iPhone/iPad: Delen → <em>Zet op beginscherm</em>. Op Android: menu → <em>App installeren</em>. In desktop-Chrome: het installatie-icoon in de adresbalk.</p><h2>Veelgestelde vragen</h2><h3>Wat is de pomodoro-techniek?</h3><p>Een timemanagementmethode van Francesco Cirillo: werken in geconcentreerde blokken van 25 minuten — “pomodoro’s” — met korte pauzes ertussen. Genoemd naar een kookwekker in tomaatvorm.</p><h3>Waarom 25 minuten?</h3><p>Lang genoeg voor diepe focus, kort genoeg om fris te blijven. De timer biedt ook intervallen van 5 tot 120 minuten en eigen duren.</p><h3>Hoe tel ik af naar een specifiek tijdstip?</h3><p>Gebruik de knoppen xx:00, xx:15, xx:30 en xx:45 — de timer telt af naar het dichtstbijzijnde moment en start vanzelf.</p><h3>Werkt de timer offline?</h3><p>Ja. Het is een PWA: installeer hem vanuit de browser (Zet op beginscherm / App installeren) en hij blijft zonder internet werken.</p><h3>Is de timer gratis?</h3><p>Ja — gratis, zonder advertenties en zonder registratie. Instellingen zitten in de URL, dus je exacte configuratie is te bewaren of te delen.</p></div>
+</details>
+</section>
 
 <div class="modal" id="helpModal">
   <div class="modal-box">
@@ -997,6 +1020,7 @@
     const faqHtml = s.faq
       ? '<h2>' + s.faqTitle + '</h2>' + s.faq.map((f) => '<h3>' + f.q + '</h3><p>' + f.a + '</p>').join('')
       : '';
+    document.getElementById('aboutToggle').textContent = s.aboutToggle;
     document.getElementById('about').innerHTML = '<h1>' + s.docTitle + '</h1>' + s.helpHtml + faqHtml;
     resetBtn.textContent = s.reset;
     timerEl.title = s.clickHint;

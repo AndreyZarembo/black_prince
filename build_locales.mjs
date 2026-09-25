@@ -95,14 +95,19 @@ function build(code) {
   h = subOnce(h, /(<button id="resetBtn">)[^<]*(<\/button>)/, `$1${esc(s.reset)}$2`);
   h = subOnce(h, /(<button id="helpBtn" class="help-btn" title=")[^"]*(">)/, `$1${esc(s.helpTitle)}$2`);
 
-  // Видимая SEO-секция: h1 + текст справки + FAQ
+  // Видимая SEO-секция (в раскрывашке): подпись + h1 + справка + FAQ
   const faqHtml =
     `<h2>${esc(s.faqTitle)}</h2>` +
     s.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('');
   h = subOnce(
     h,
-    /<section class="about" id="about">[\s\S]*?<\/section>/,
-    `<section class="about" id="about"><h1>${esc(s.docTitle)}</h1>${s.helpHtml.trim()}${faqHtml}</section>`,
+    /<summary id="aboutToggle">[\s\S]*?<\/summary>/,
+    `<summary id="aboutToggle">${esc(s.aboutToggle)}</summary>`,
+  );
+  h = subOnce(
+    h,
+    /<div id="about">[\s\S]*?<\/div>/,
+    `<div id="about"><h1>${esc(s.docTitle)}</h1>${s.helpHtml.trim()}${faqHtml}</div>`,
   );
 
   // FAQPage-разметка (заменяется при пересборке)

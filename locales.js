@@ -35,6 +35,7 @@ window.LOCALES = {
     clickHint: 'Click — start / pause',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Help',
+    aboutToggle: 'About this timer & FAQ',
     faqTitle: 'Frequently asked questions',
     faq: [
       { q: 'What is the Pomodoro Technique?', a: 'A time-management method by Francesco Cirillo: work in focused 25-minute intervals — “pomodoros” — separated by short breaks. It is named after a tomato-shaped kitchen timer.' },
@@ -85,6 +86,7 @@ window.LOCALES = {
     clickHint: 'Clic — iniciar / pausar',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Ayuda',
+    aboutToggle: 'Acerca del temporizador y preguntas frecuentes',
     faqTitle: 'Preguntas frecuentes',
     faq: [
       { q: '¿Qué es la técnica Pomodoro?', a: 'Un método de gestión del tiempo de Francesco Cirillo: trabajar en intervalos concentrados de 25 minutos — «pomodoros» — separados por pausas cortas. Debe su nombre a un temporizador de cocina con forma de tomate.' },
@@ -135,6 +137,7 @@ window.LOCALES = {
     clickHint: 'Klick — Start / Pause',
     minUnit: 'Min', secUnit: 's',
     helpTitle: 'Hilfe',
+    aboutToggle: 'Über den Timer & FAQ',
     faqTitle: 'Häufige Fragen',
     faq: [
       { q: 'Was ist die Pomodoro-Technik?', a: 'Eine Zeitmanagement-Methode von Francesco Cirillo: Arbeit in fokussierten 25-Minuten-Intervallen — „Pomodori“ — mit kurzen Pausen dazwischen. Benannt nach einer tomatenförmigen Küchenuhr.' },
@@ -185,6 +188,7 @@ window.LOCALES = {
     clickHint: 'Clic — démarrer / pause',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Aide',
+    aboutToggle: 'À propos du minuteur & FAQ',
     faqTitle: 'Questions fréquentes',
     faq: [
       { q: 'Qu’est-ce que la technique Pomodoro ?', a: 'Une méthode de gestion du temps de Francesco Cirillo : travailler par intervalles concentrés de 25 minutes — les « pomodoros » — séparés par de courtes pauses. Elle doit son nom à un minuteur de cuisine en forme de tomate.' },
@@ -235,6 +239,7 @@ window.LOCALES = {
     clickHint: 'Clique — iniciar / pausar',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Ajuda',
+    aboutToggle: 'Sobre o timer e perguntas frequentes',
     faqTitle: 'Perguntas frequentes',
     faq: [
       { q: 'O que é a técnica Pomodoro?', a: 'Um método de gestão do tempo de Francesco Cirillo: trabalhar em intervalos concentrados de 25 minutos — “pomodoros” — separados por pausas curtas. O nome vem de um timer de cozinha em forma de tomate.' },
@@ -285,6 +290,7 @@ window.LOCALES = {
     clickHint: 'クリックで開始 / 一時停止',
     minUnit: '分', secUnit: '秒',
     helpTitle: 'ヘルプ',
+    aboutToggle: 'このタイマーについて・よくある質問',
     faqTitle: 'よくある質問',
     faq: [
       { q: 'ポモドーロ・テクニックとは？', a: 'フランチェスコ・シリロが考案した時間管理術です。25分の集中インターバル（ポモドーロ）と短い休憩を交互に繰り返します。トマト型のキッチンタイマーが名前の由来です。' },
@@ -335,6 +341,7 @@ window.LOCALES = {
     clickHint: 'Клик — старт / пауза',
     minUnit: 'мин', secUnit: 'с',
     helpTitle: 'Справка',
+    aboutToggle: 'О таймере и частые вопросы',
     faqTitle: 'Частые вопросы',
     faq: [
       { q: 'Что такое техника Pomodoro?', a: 'Метод управления временем Франческо Чирилло: работа сфокусированными интервалами по 25 минут — «помидорами» — с короткими перерывами между ними. Назван в честь кухонного таймера в форме помидора.' },
@@ -385,6 +392,7 @@ window.LOCALES = {
     clickHint: 'Clic — avvia / pausa',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Guida',
+    aboutToggle: 'Informazioni sul timer e domande frequenti',
     faqTitle: 'Domande frequenti',
     faq: [
       { q: 'Che cos’è la tecnica del pomodoro?', a: 'Un metodo di gestione del tempo di Francesco Cirillo: lavorare in intervalli concentrati di 25 minuti — i «pomodori» — separati da brevi pause. Prende il nome da un timer da cucina a forma di pomodoro.' },
@@ -435,6 +443,7 @@ window.LOCALES = {
     clickHint: 'Klik — start / pauze',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Hulp',
+    aboutToggle: 'Over de timer & veelgestelde vragen',
     faqTitle: 'Veelgestelde vragen',
     faq: [
       { q: 'Wat is de pomodoro-techniek?', a: 'Een timemanagementmethode van Francesco Cirillo: werken in geconcentreerde blokken van 25 minuten — “pomodoro’s” — met korte pauzes ertussen. Genoemd naar een kookwekker in tomaatvorm.' },
@@ -485,6 +494,7 @@ window.LOCALES = {
     clickHint: 'Klik — start / pauza',
     minUnit: 'min', secUnit: 's',
     helpTitle: 'Pomoc',
+    aboutToggle: 'O timerze i częste pytania',
     faqTitle: 'Częste pytania',
     faq: [
       { q: 'Czym jest technika Pomodoro?', a: 'Metoda zarządzania czasem Francesco Cirillo: praca w skupionych interwałach po 25 minut — „pomidorach” — przedzielonych krótkimi przerwami. Nazwa pochodzi od kuchennego minutnika w kształcie pomidora.' },
