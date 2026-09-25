@@ -5,8 +5,8 @@
 <script>window.PAGE_LANG="pl";</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer Pomodoro — konfigurowalny internetowy timer pomidorowy</title>
-<meta name="description" content="Darmowy timer Pomodoro: interwały 5–120 minut, odliczanie do wskazanej godziny, 11 motywów kolorów, 9 czcionek w tym 7-segmentowy LCD, powiadomienia. Ustawienia mieszkają w linku. Na komputer i telefon.">
+<title>Timer Pomodoro Online — darmowy minutnik i aplikacja</title>
+<meta name="description" content="Darmowy timer Pomodoro: interwały 5–120 minut, odliczanie do wskazanej godziny, 11 motywów kolorów, 9 czcionek w tym 7-segmentowy LCD, powiadomienia. Ustawienia mieszkają w linku. Na komputer i telefon. Instaluje się jako darmowa aplikacja Pomodoro (PWA).">
 <link rel="canonical" href="https://andreyzarembo.github.io/black_prince/pl/">
 <link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/">
 <link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/">
@@ -28,8 +28,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Pomodoro">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Timer Pomodoro — konfigurowalny internetowy timer pomidorowy">
-<meta property="og:description" content="Darmowy timer Pomodoro: interwały 5–120 minut, odliczanie do wskazanej godziny, 11 motywów kolorów, 9 czcionek w tym 7-segmentowy LCD, powiadomienia. Ustawienia mieszkają w linku. Na komputer i telefon.">
+<meta property="og:title" content="Timer Pomodoro Online — darmowy minutnik i aplikacja">
+<meta property="og:description" content="Darmowy timer Pomodoro: interwały 5–120 minut, odliczanie do wskazanej godziny, 11 motywów kolorów, 9 czcionek w tym 7-segmentowy LCD, powiadomienia. Ustawienia mieszkają w linku. Na komputer i telefon. Instaluje się jako darmowa aplikacja Pomodoro (PWA).">
 <meta property="og:url" content="https://andreyzarembo.github.io/black_prince/pl/">
 <meta property="og:image" content="https://andreyzarembo.github.io/black_prince/icons/og.png">
 <meta property="og:image:width" content="1200">
@@ -41,9 +41,9 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Timer Pomodoro — konfigurowalny internetowy timer pomidorowy",
+  "name": "Timer Pomodoro Online — darmowy minutnik i aplikacja",
   "url": "https://andreyzarembo.github.io/black_prince/pl/",
-  "description": "Darmowy timer Pomodoro: interwały 5–120 minut, odliczanie do wskazanej godziny, 11 motywów kolorów, 9 czcionek w tym 7-segmentowy LCD, powiadomienia. Ustawienia mieszkają w linku. Na komputer i telefon.",
+  "description": "Darmowy timer Pomodoro: interwały 5–120 minut, odliczanie do wskazanej godziny, 11 motywów kolorów, 9 czcionek w tym 7-segmentowy LCD, powiadomienia. Ustawienia mieszkają w linku. Na komputer i telefon. Instaluje się jako darmowa aplikacja Pomodoro (PWA).",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -98,6 +98,14 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Tak — darmowy, bez reklam i bez rejestracji. Ustawienia mieszkają w adresie URL, więc dokładną konfigurację można zapisać lub komuś wysłać."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy istnieje aplikacja Pomodoro na iPhone, Androida lub komputer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak — ten timer to aplikacja Pomodoro (PWA). Zainstaluj ją prosto z przeglądarki: Udostępnij → Do ekranu początkowego na iPhone/iPad, menu → Zainstaluj aplikację na Androidzie lub ikona instalacji w Chrome na komputerze. Bez sklepu z aplikacjami, działa offline i jest darmowa."
       }
     }
   ]
@@ -569,7 +577,7 @@
 <section class="about">
 <details>
 <summary id="aboutToggle">O timerze i częste pytania</summary>
-<div id="about"><h1>Timer Pomodoro — konfigurowalny internetowy timer pomidorowy</h1><h2>Timer Pomodoro</h2>
+<div id="about"><h1>Timer Pomodoro Online — darmowy minutnik i aplikacja</h1><h2>Timer Pomodoro</h2>
 <p><strong>Pomodoro</strong> to technika koncentracji: pracuj w odmierzanych sprintach (klasycznie 25 minut), a potem zrób krótką przerwę.</p>
 <h3>Timer</h3>
 <ul>
@@ -588,7 +596,7 @@
 <h3>Udostępnianie</h3>
 <p>Każde ustawienie jest zapisane w adresie URL jako <code>?config=…</code>. Dodaj do zakładek lub wyślij link — twoja dokładna konfiguracja otworzy się wszędzie.</p>
 <h3>Instalacja jako aplikacja</h3>
-<p>Timer to PWA i działa offline. Na iPhone/iPad: Udostępnij → <em>Do ekranu początkowego</em>. Na Androidzie: menu → <em>Zainstaluj aplikację</em>. W Chrome na komputerze: ikona instalacji w pasku adresu.</p><h2>Częste pytania</h2><h3>Czym jest technika Pomodoro?</h3><p>Metoda zarządzania czasem Francesco Cirillo: praca w skupionych interwałach po 25 minut — „pomidorach” — przedzielonych krótkimi przerwami. Nazwa pochodzi od kuchennego minutnika w kształcie pomidora.</p><h3>Dlaczego 25 minut?</h3><p>Wystarczająco długo na głęboką koncentrację i dość krótko, by się nie wypalić. Timer oferuje też interwały od 5 do 120 minut i własne czasy.</p><h3>Jak odliczać do konkretnej godziny?</h3><p>Użyj przycisków xx:00, xx:15, xx:30 i xx:45 — timer odliczy do najbliższego takiego momentu i wystartuje sam.</p><h3>Czy timer działa offline?</h3><p>Tak. To PWA: zainstaluj go z przeglądarki (Do ekranu początkowego / Zainstaluj aplikację), a będzie działał bez internetu.</p><h3>Czy timer jest darmowy?</h3><p>Tak — darmowy, bez reklam i bez rejestracji. Ustawienia mieszkają w adresie URL, więc dokładną konfigurację można zapisać lub komuś wysłać.</p></div>
+<p>Timer to PWA i działa offline. Na iPhone/iPad: Udostępnij → <em>Do ekranu początkowego</em>. Na Androidzie: menu → <em>Zainstaluj aplikację</em>. W Chrome na komputerze: ikona instalacji w pasku adresu.</p><h2>Częste pytania</h2><h3>Czym jest technika Pomodoro?</h3><p>Metoda zarządzania czasem Francesco Cirillo: praca w skupionych interwałach po 25 minut — „pomidorach” — przedzielonych krótkimi przerwami. Nazwa pochodzi od kuchennego minutnika w kształcie pomidora.</p><h3>Dlaczego 25 minut?</h3><p>Wystarczająco długo na głęboką koncentrację i dość krótko, by się nie wypalić. Timer oferuje też interwały od 5 do 120 minut i własne czasy.</p><h3>Jak odliczać do konkretnej godziny?</h3><p>Użyj przycisków xx:00, xx:15, xx:30 i xx:45 — timer odliczy do najbliższego takiego momentu i wystartuje sam.</p><h3>Czy timer działa offline?</h3><p>Tak. To PWA: zainstaluj go z przeglądarki (Do ekranu początkowego / Zainstaluj aplikację), a będzie działał bez internetu.</p><h3>Czy timer jest darmowy?</h3><p>Tak — darmowy, bez reklam i bez rejestracji. Ustawienia mieszkają w adresie URL, więc dokładną konfigurację można zapisać lub komuś wysłać.</p><h3>Czy istnieje aplikacja Pomodoro na iPhone, Androida lub komputer?</h3><p>Tak — ten timer to aplikacja Pomodoro (PWA). Zainstaluj ją prosto z przeglądarki: Udostępnij → Do ekranu początkowego na iPhone/iPad, menu → Zainstaluj aplikację na Androidzie lub ikona instalacji w Chrome na komputerze. Bez sklepu z aplikacjami, działa offline i jest darmowa.</p></div>
 </details>
 </section>
 

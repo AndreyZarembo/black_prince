@@ -5,8 +5,8 @@
 <script>window.PAGE_LANG="ja";</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ポモドーロタイマー — カスタマイズできるオンラインタイマー</title>
-<meta name="description" content="無料のポモドーロタイマー。5〜120分のプリセット、指定時刻までのカウントダウン、11のカラーテーマ、7セグメントLCDを含む9つのフォント、通知に対応。設定はURLに保存され、PCでもスマホでも使えます。">
+<title>ポモドーロタイマー オンライン — 無料タイマー＆アプリ</title>
+<meta name="description" content="無料のポモドーロタイマー。5〜120分のプリセット、指定時刻までのカウントダウン、11のカラーテーマ、7セグメントLCDを含む9つのフォント、通知に対応。設定はURLに保存され、PCでもスマホでも使えます。無料のポモドーロアプリ（PWA）としてインストールできます。">
 <link rel="canonical" href="https://andreyzarembo.github.io/black_prince/ja/">
 <link rel="alternate" hreflang="x-default" href="https://andreyzarembo.github.io/black_prince/">
 <link rel="alternate" hreflang="en" href="https://andreyzarembo.github.io/black_prince/">
@@ -28,8 +28,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Pomodoro">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ポモドーロタイマー — カスタマイズできるオンラインタイマー">
-<meta property="og:description" content="無料のポモドーロタイマー。5〜120分のプリセット、指定時刻までのカウントダウン、11のカラーテーマ、7セグメントLCDを含む9つのフォント、通知に対応。設定はURLに保存され、PCでもスマホでも使えます。">
+<meta property="og:title" content="ポモドーロタイマー オンライン — 無料タイマー＆アプリ">
+<meta property="og:description" content="無料のポモドーロタイマー。5〜120分のプリセット、指定時刻までのカウントダウン、11のカラーテーマ、7セグメントLCDを含む9つのフォント、通知に対応。設定はURLに保存され、PCでもスマホでも使えます。無料のポモドーロアプリ（PWA）としてインストールできます。">
 <meta property="og:url" content="https://andreyzarembo.github.io/black_prince/ja/">
 <meta property="og:image" content="https://andreyzarembo.github.io/black_prince/icons/og.png">
 <meta property="og:image:width" content="1200">
@@ -41,9 +41,9 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "ポモドーロタイマー — カスタマイズできるオンラインタイマー",
+  "name": "ポモドーロタイマー オンライン — 無料タイマー＆アプリ",
   "url": "https://andreyzarembo.github.io/black_prince/ja/",
-  "description": "無料のポモドーロタイマー。5〜120分のプリセット、指定時刻までのカウントダウン、11のカラーテーマ、7セグメントLCDを含む9つのフォント、通知に対応。設定はURLに保存され、PCでもスマホでも使えます。",
+  "description": "無料のポモドーロタイマー。5〜120分のプリセット、指定時刻までのカウントダウン、11のカラーテーマ、7セグメントLCDを含む9つのフォント、通知に対応。設定はURLに保存され、PCでもスマホでも使えます。無料のポモドーロアプリ（PWA）としてインストールできます。",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -98,6 +98,14 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "はい。無料で、広告も登録もありません。設定はURLに保存されるので、ブックマークや共有でそのままの設定を開けます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "iPhoneやAndroid、パソコン向けのポモドーロアプリはありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。このタイマー自体がポモドーロアプリ（PWA）です。ブラウザからそのままインストールできます。iPhone/iPadは共有→ホーム画面に追加、Androidはメニュー→アプリをインストール、PCのChromeはアドレスバーのインストールアイコンです。アプリストア不要、オフラインで動作し、無料です。"
       }
     }
   ]
@@ -569,7 +577,7 @@
 <section class="about">
 <details>
 <summary id="aboutToggle">このタイマーについて・よくある質問</summary>
-<div id="about"><h1>ポモドーロタイマー — カスタマイズできるオンラインタイマー</h1><h2>ポモドーロタイマー</h2>
+<div id="about"><h1>ポモドーロタイマー オンライン — 無料タイマー＆アプリ</h1><h2>ポモドーロタイマー</h2>
 <p><strong>ポモドーロ</strong>は集中のためのテクニックです。時間を区切って作業し（基本は25分）、短い休憩を挟みます。</p>
 <h3>タイマー</h3>
 <ul>
@@ -588,7 +596,7 @@
 <h3>共有</h3>
 <p>すべての設定はURLの <code>?config=…</code> に保存されます。ブックマークやリンクの共有で、同じ設定がどこでも開きます。</p>
 <h3>アプリとしてインストール</h3>
-<p>このタイマーはPWAで、オフラインでも動きます。iPhone/iPad: 共有 → <em>ホーム画面に追加</em>。Android: メニュー → <em>アプリをインストール</em>。PCのChrome: アドレスバーのインストールアイコン。</p><h2>よくある質問</h2><h3>ポモドーロ・テクニックとは？</h3><p>フランチェスコ・シリロが考案した時間管理術です。25分の集中インターバル（ポモドーロ）と短い休憩を交互に繰り返します。トマト型のキッチンタイマーが名前の由来です。</p><h3>なぜ25分なのですか？</h3><p>深く集中するには十分長く、疲れずに続けるには十分短い長さだからです。このタイマーには5〜120分のプリセットとカスタム時間もあります。</p><h3>指定した時刻までのカウントダウンはできますか？</h3><p>xx:00、xx:15、xx:30、xx:45のボタンを使ってください。直近のその時刻までカウントダウンし、自動的にスタートします。</p><h3>オフラインでも動きますか？</h3><p>はい。PWAなのでブラウザからインストールすれば（ホーム画面に追加／アプリをインストール）、インターネットなしでも動作します。</p><h3>無料ですか？</h3><p>はい。無料で、広告も登録もありません。設定はURLに保存されるので、ブックマークや共有でそのままの設定を開けます。</p></div>
+<p>このタイマーはPWAで、オフラインでも動きます。iPhone/iPad: 共有 → <em>ホーム画面に追加</em>。Android: メニュー → <em>アプリをインストール</em>。PCのChrome: アドレスバーのインストールアイコン。</p><h2>よくある質問</h2><h3>ポモドーロ・テクニックとは？</h3><p>フランチェスコ・シリロが考案した時間管理術です。25分の集中インターバル（ポモドーロ）と短い休憩を交互に繰り返します。トマト型のキッチンタイマーが名前の由来です。</p><h3>なぜ25分なのですか？</h3><p>深く集中するには十分長く、疲れずに続けるには十分短い長さだからです。このタイマーには5〜120分のプリセットとカスタム時間もあります。</p><h3>指定した時刻までのカウントダウンはできますか？</h3><p>xx:00、xx:15、xx:30、xx:45のボタンを使ってください。直近のその時刻までカウントダウンし、自動的にスタートします。</p><h3>オフラインでも動きますか？</h3><p>はい。PWAなのでブラウザからインストールすれば（ホーム画面に追加／アプリをインストール）、インターネットなしでも動作します。</p><h3>無料ですか？</h3><p>はい。無料で、広告も登録もありません。設定はURLに保存されるので、ブックマークや共有でそのままの設定を開けます。</p><h3>iPhoneやAndroid、パソコン向けのポモドーロアプリはありますか？</h3><p>はい。このタイマー自体がポモドーロアプリ（PWA）です。ブラウザからそのままインストールできます。iPhone/iPadは共有→ホーム画面に追加、Androidはメニュー→アプリをインストール、PCのChromeはアドレスバーのインストールアイコンです。アプリストア不要、オフラインで動作し、無料です。</p></div>
 </details>
 </section>
 

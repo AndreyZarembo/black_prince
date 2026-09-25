@@ -17,7 +17,7 @@ window.LANG_NAMES = {
 window.LOCALES = {
 
   en: {
-    docTitle: 'Pomodoro Timer — customizable online tomato timer',
+    docTitle: 'Pomodoro Timer Online — Free Tomato Timer & App',
     theme: 'Theme', themeSystem: 'System', themeDark: 'Dark', themeLight: 'Light',
     preset: 'Preset', presetCustom: 'Custom',
     presets: { tomato: 'Tomato', night: 'Night', paper: 'Paper', ocean: 'Ocean', forest: 'Forest', lavender: 'Lavender', terminal: 'Terminal', sunset: 'Sunset', honey: 'Honey', graphite: 'Graphite', neon: 'Neon' },
@@ -43,6 +43,7 @@ window.LOCALES = {
       { q: 'How do I count down to a specific time?', a: 'Use the xx:00, xx:15, xx:30 and xx:45 buttons — the timer counts down to the nearest such moment and starts automatically.' },
       { q: 'Does the timer work offline?', a: 'Yes. It is a PWA: install it from the browser (Add to Home Screen / Install app) and it keeps working without an internet connection.' },
       { q: 'Is the timer free?', a: 'Yes — free, with no ads and no registration. Settings live in the URL, so you can bookmark or share your exact setup.' },
+      { q: 'Is there a Pomodoro app for iPhone, Android or desktop?', a: 'Yes — this timer is a Pomodoro app (PWA). Install it right from the browser: Share → Add to Home Screen on iPhone/iPad, menu → Install app on Android, or the install icon in desktop Chrome. No app store needed, it works offline and it is free.' },
     ],
     helpHtml: `
 <h2>Pomodoro Timer</h2>
@@ -68,7 +69,7 @@ window.LOCALES = {
   },
 
   es: {
-    docTitle: 'Temporizador Pomodoro — temporizador de tomate en línea personalizable',
+    docTitle: 'Temporizador Pomodoro Online — Reloj Pomodoro Gratis y App',
     theme: 'Tema', themeSystem: 'Sistema', themeDark: 'Oscuro', themeLight: 'Claro',
     preset: 'Estilo', presetCustom: 'Propio',
     presets: { tomato: 'Tomate', night: 'Noche', paper: 'Papel', ocean: 'Océano', forest: 'Bosque', lavender: 'Lavanda', terminal: 'Terminal', sunset: 'Atardecer', honey: 'Miel', graphite: 'Grafito', neon: 'Neón' },
@@ -94,6 +95,7 @@ window.LOCALES = {
       { q: '¿Cómo cuento atrás hasta una hora concreta?', a: 'Usa los botones xx:00, xx:15, xx:30 y xx:45: el temporizador cuenta hasta el momento más cercano y arranca solo.' },
       { q: '¿Funciona sin conexión?', a: 'Sí. Es una PWA: instálala desde el navegador (Añadir a pantalla de inicio / Instalar aplicación) y seguirá funcionando sin internet.' },
       { q: '¿Es gratis?', a: 'Sí: gratis, sin anuncios y sin registro. Los ajustes viven en la URL, así que puedes guardar o compartir tu configuración exacta.' },
+      { q: '¿Hay una app Pomodoro para iPhone, Android u ordenador?', a: 'Sí: este temporizador es una app Pomodoro (PWA). Instálala desde el navegador: Compartir → Añadir a pantalla de inicio en iPhone/iPad, menú → Instalar aplicación en Android o el icono de instalación en Chrome de escritorio. Sin tiendas de apps, funciona sin conexión y es gratis.' },
     ],
     helpHtml: `
 <h2>Temporizador Pomodoro</h2>
@@ -119,7 +121,7 @@ window.LOCALES = {
   },
 
   de: {
-    docTitle: 'Pomodoro-Timer — anpassbarer Online-Tomaten-Timer',
+    docTitle: 'Pomodoro-Timer Online — kostenloser Tomaten-Timer & App',
     theme: 'Design', themeSystem: 'System', themeDark: 'Dunkel', themeLight: 'Hell',
     preset: 'Vorlage', presetCustom: 'Eigenes',
     presets: { tomato: 'Tomate', night: 'Nacht', paper: 'Papier', ocean: 'Ozean', forest: 'Wald', lavender: 'Lavendel', terminal: 'Terminal', sunset: 'Abendrot', honey: 'Honig', graphite: 'Graphit', neon: 'Neon' },
@@ -145,6 +147,7 @@ window.LOCALES = {
       { q: 'Wie zähle ich bis zu einer Uhrzeit herunter?', a: 'Mit den Knöpfen xx:00, xx:15, xx:30 und xx:45 — der Timer läuft bis zum nächsten solchen Zeitpunkt und startet automatisch.' },
       { q: 'Funktioniert der Timer offline?', a: 'Ja. Er ist eine PWA: über den Browser installieren (Zum Home-Bildschirm / App installieren) — und er läuft ohne Internetverbindung weiter.' },
       { q: 'Ist der Timer kostenlos?', a: 'Ja — kostenlos, ohne Werbung und ohne Registrierung. Die Einstellungen stecken in der URL, also lässt sich die exakte Konfiguration speichern oder teilen.' },
+      { q: 'Gibt es eine Pomodoro-App für iPhone, Android oder Desktop?', a: 'Ja — dieser Timer ist eine Pomodoro-App (PWA). Direkt aus dem Browser installieren: Teilen → Zum Home-Bildschirm auf iPhone/iPad, Menü → App installieren auf Android oder das Installationssymbol in Desktop-Chrome. Kein App Store nötig, funktioniert offline und ist kostenlos.' },
     ],
     helpHtml: `
 <h2>Pomodoro-Timer</h2>
@@ -170,7 +173,7 @@ window.LOCALES = {
   },
 
   fr: {
-    docTitle: 'Minuteur Pomodoro — minuteur tomate en ligne personnalisable',
+    docTitle: 'Minuteur Tomate en Ligne — Minuteur Pomodoro Gratuit & App',
     theme: 'Thème', themeSystem: 'Système', themeDark: 'Sombre', themeLight: 'Clair',
     preset: 'Préréglage', presetCustom: 'Personnalisé',
     presets: { tomato: 'Tomate', night: 'Nuit', paper: 'Papier', ocean: 'Océan', forest: 'Forêt', lavender: 'Lavande', terminal: 'Terminal', sunset: 'Coucher de soleil', honey: 'Miel', graphite: 'Graphite', neon: 'Néon' },
@@ -196,6 +199,7 @@ window.LOCALES = {
       { q: 'Comment compter jusqu’à une heure précise ?', a: 'Utilisez les boutons xx:00, xx:15, xx:30 et xx:45 : le minuteur décompte jusqu’au prochain moment de ce type et démarre automatiquement.' },
       { q: 'Le minuteur fonctionne-t-il hors ligne ?', a: 'Oui. C’est une PWA : installez-la depuis le navigateur (Sur l’écran d’accueil / Installer l’application) et elle continue de fonctionner sans connexion.' },
       { q: 'Le minuteur est-il gratuit ?', a: 'Oui — gratuit, sans publicité ni inscription. Les réglages vivent dans l’URL : vous pouvez enregistrer ou partager votre configuration exacte.' },
+      { q: 'Existe-t-il une application Pomodoro pour iPhone, Android ou ordinateur ?', a: 'Oui — ce minuteur est une application Pomodoro (PWA). Installez-la depuis le navigateur : Partager → Sur l’écran d’accueil sur iPhone/iPad, menu → Installer l’application sur Android, ou l’icône d’installation dans Chrome. Pas d’App Store, elle fonctionne hors ligne et elle est gratuite.' },
     ],
     helpHtml: `
 <h2>Minuteur Pomodoro</h2>
@@ -221,7 +225,7 @@ window.LOCALES = {
   },
 
   pt: {
-    docTitle: 'Temporizador Pomodoro — timer de tomate online personalizável',
+    docTitle: 'Temporizador Pomodoro Online — Timer Grátis e App',
     theme: 'Tema', themeSystem: 'Sistema', themeDark: 'Escuro', themeLight: 'Claro',
     preset: 'Predefinição', presetCustom: 'Próprio',
     presets: { tomato: 'Tomate', night: 'Noite', paper: 'Papel', ocean: 'Oceano', forest: 'Floresta', lavender: 'Lavanda', terminal: 'Terminal', sunset: 'Pôr do sol', honey: 'Mel', graphite: 'Grafite', neon: 'Néon' },
@@ -247,6 +251,7 @@ window.LOCALES = {
       { q: 'Como faço contagem até uma hora específica?', a: 'Use os botões xx:00, xx:15, xx:30 e xx:45 — o timer conta até o momento mais próximo e inicia sozinho.' },
       { q: 'O timer funciona offline?', a: 'Sim. É um PWA: instale pelo navegador (Adicionar à Tela de Início / Instalar app) e ele continua funcionando sem internet.' },
       { q: 'O timer é gratuito?', a: 'Sim — gratuito, sem anúncios e sem cadastro. As configurações ficam na URL, então você pode salvar ou compartilhar sua configuração exata.' },
+      { q: 'Existe um app Pomodoro para iPhone, Android ou desktop?', a: 'Sim — este timer é um app Pomodoro (PWA). Instale direto do navegador: Compartilhar → Adicionar à Tela de Início no iPhone/iPad, menu → Instalar app no Android ou o ícone de instalação no Chrome. Sem loja de aplicativos, funciona offline e é grátis.' },
     ],
     helpHtml: `
 <h2>Temporizador Pomodoro</h2>
@@ -272,7 +277,7 @@ window.LOCALES = {
   },
 
   ja: {
-    docTitle: 'ポモドーロタイマー — カスタマイズできるオンラインタイマー',
+    docTitle: 'ポモドーロタイマー オンライン — 無料タイマー＆アプリ',
     theme: 'テーマ', themeSystem: 'システム', themeDark: 'ダーク', themeLight: 'ライト',
     preset: 'プリセット', presetCustom: 'カスタム',
     presets: { tomato: 'トマト', night: 'ナイト', paper: 'ペーパー', ocean: 'オーシャン', forest: 'フォレスト', lavender: 'ラベンダー', terminal: 'ターミナル', sunset: 'サンセット', honey: 'ハニー', graphite: 'グラファイト', neon: 'ネオン' },
@@ -298,6 +303,7 @@ window.LOCALES = {
       { q: '指定した時刻までのカウントダウンはできますか？', a: 'xx:00、xx:15、xx:30、xx:45のボタンを使ってください。直近のその時刻までカウントダウンし、自動的にスタートします。' },
       { q: 'オフラインでも動きますか？', a: 'はい。PWAなのでブラウザからインストールすれば（ホーム画面に追加／アプリをインストール）、インターネットなしでも動作します。' },
       { q: '無料ですか？', a: 'はい。無料で、広告も登録もありません。設定はURLに保存されるので、ブックマークや共有でそのままの設定を開けます。' },
+      { q: 'iPhoneやAndroid、パソコン向けのポモドーロアプリはありますか？', a: 'はい。このタイマー自体がポモドーロアプリ（PWA）です。ブラウザからそのままインストールできます。iPhone/iPadは共有→ホーム画面に追加、Androidはメニュー→アプリをインストール、PCのChromeはアドレスバーのインストールアイコンです。アプリストア不要、オフラインで動作し、無料です。' },
     ],
     helpHtml: `
 <h2>ポモドーロタイマー</h2>
@@ -323,7 +329,7 @@ window.LOCALES = {
   },
 
   ru: {
-    docTitle: 'Pomodoro таймер онлайн — настраиваемый таймер помидора',
+    docTitle: 'Pomodoro таймер онлайн — бесплатный таймер помидора и приложение',
     theme: 'Тема', themeSystem: 'Системная', themeDark: 'Тёмная', themeLight: 'Светлая',
     preset: 'Пресет', presetCustom: 'Свой',
     presets: { tomato: 'Помидор', night: 'Ночь', paper: 'Бумага', ocean: 'Океан', forest: 'Лес', lavender: 'Лаванда', terminal: 'Терминал', sunset: 'Закат', honey: 'Мёд', graphite: 'Графит', neon: 'Неон' },
@@ -349,6 +355,7 @@ window.LOCALES = {
       { q: 'Как поставить отсчёт до конкретного времени?', a: 'Кнопки xx:00, xx:15, xx:30 и xx:45 — таймер отсчитает до ближайшей такой отметки и запустится сам.' },
       { q: 'Работает ли таймер офлайн?', a: 'Да. Это PWA: установите его из браузера («На экран „Домой“» / «Установить приложение») — и он работает без интернета.' },
       { q: 'Таймер бесплатный?', a: 'Да: бесплатно, без рекламы и без регистрации. Настройки хранятся в ссылке — конфигурацию можно сохранить в закладки или отправить кому-то.' },
+      { q: 'Есть ли приложение Pomodoro для iPhone, Android или компьютера?', a: 'Да — этот таймер и есть приложение Pomodoro (PWA). Установите его прямо из браузера: Поделиться → На экран «Домой» на iPhone/iPad, меню → Установить приложение на Android или значок установки в Chrome на компьютере. Без App Store, работает офлайн, бесплатно.' },
     ],
     helpHtml: `
 <h2>Pomodoro таймер</h2>
@@ -374,7 +381,7 @@ window.LOCALES = {
   },
 
   it: {
-    docTitle: 'Timer Pomodoro — timer del pomodoro online personalizzabile',
+    docTitle: 'Timer Pomodoro Online — Timer Gratis e App',
     theme: 'Tema', themeSystem: 'Sistema', themeDark: 'Scuro', themeLight: 'Chiaro',
     preset: 'Preset', presetCustom: 'Personale',
     presets: { tomato: 'Pomodoro', night: 'Notte', paper: 'Carta', ocean: 'Oceano', forest: 'Foresta', lavender: 'Lavanda', terminal: 'Terminale', sunset: 'Tramonto', honey: 'Miele', graphite: 'Grafite', neon: 'Neon' },
@@ -400,6 +407,7 @@ window.LOCALES = {
       { q: 'Come conto alla rovescia fino a un orario preciso?', a: 'Usa i pulsanti xx:00, xx:15, xx:30 e xx:45: il timer conta fino al momento più vicino e parte da solo.' },
       { q: 'Il timer funziona offline?', a: 'Sì. È una PWA: installala dal browser (Aggiungi alla schermata Home / Installa app) e continuerà a funzionare senza connessione.' },
       { q: 'Il timer è gratuito?', a: 'Sì — gratuito, senza pubblicità e senza registrazione. Le impostazioni vivono nell’URL: puoi salvare o condividere la tua configurazione esatta.' },
+      { q: 'Esiste un’app Pomodoro per iPhone, Android o desktop?', a: 'Sì — questo timer è un’app Pomodoro (PWA). Installala dal browser: Condividi → Aggiungi alla schermata Home su iPhone/iPad, menu → Installa app su Android o l’icona di installazione in Chrome. Niente app store, funziona offline ed è gratuita.' },
     ],
     helpHtml: `
 <h2>Timer Pomodoro</h2>
@@ -425,7 +433,7 @@ window.LOCALES = {
   },
 
   nl: {
-    docTitle: 'Pomodoro-timer — aanpasbare online tomaat-timer',
+    docTitle: 'Pomodoro Timer Online — gratis tomaat-timer & app',
     theme: 'Thema', themeSystem: 'Systeem', themeDark: 'Donker', themeLight: 'Licht',
     preset: 'Preset', presetCustom: 'Eigen',
     presets: { tomato: 'Tomaat', night: 'Nacht', paper: 'Papier', ocean: 'Oceaan', forest: 'Bos', lavender: 'Lavendel', terminal: 'Terminal', sunset: 'Zonsondergang', honey: 'Honing', graphite: 'Grafiet', neon: 'Neon' },
@@ -451,6 +459,7 @@ window.LOCALES = {
       { q: 'Hoe tel ik af naar een specifiek tijdstip?', a: 'Gebruik de knoppen xx:00, xx:15, xx:30 en xx:45 — de timer telt af naar het dichtstbijzijnde moment en start vanzelf.' },
       { q: 'Werkt de timer offline?', a: 'Ja. Het is een PWA: installeer hem vanuit de browser (Zet op beginscherm / App installeren) en hij blijft zonder internet werken.' },
       { q: 'Is de timer gratis?', a: 'Ja — gratis, zonder advertenties en zonder registratie. Instellingen zitten in de URL, dus je exacte configuratie is te bewaren of te delen.' },
+      { q: 'Is er een Pomodoro-app voor iPhone, Android of desktop?', a: 'Ja — deze timer is een Pomodoro-app (PWA). Installeer hem direct vanuit de browser: Delen → Zet op beginscherm op iPhone/iPad, menu → App installeren op Android of het installatie-icoon in desktop-Chrome. Geen appstore nodig, werkt offline en is gratis.' },
     ],
     helpHtml: `
 <h2>Pomodoro-timer</h2>
@@ -476,7 +485,7 @@ window.LOCALES = {
   },
 
   pl: {
-    docTitle: 'Timer Pomodoro — konfigurowalny internetowy timer pomidorowy',
+    docTitle: 'Timer Pomodoro Online — darmowy minutnik i aplikacja',
     theme: 'Motyw', themeSystem: 'Systemowy', themeDark: 'Ciemny', themeLight: 'Jasny',
     preset: 'Zestaw', presetCustom: 'Własny',
     presets: { tomato: 'Pomidor', night: 'Noc', paper: 'Papier', ocean: 'Ocean', forest: 'Las', lavender: 'Lawenda', terminal: 'Terminal', sunset: 'Zachód słońca', honey: 'Miód', graphite: 'Grafit', neon: 'Neon' },
@@ -502,6 +511,7 @@ window.LOCALES = {
       { q: 'Jak odliczać do konkretnej godziny?', a: 'Użyj przycisków xx:00, xx:15, xx:30 i xx:45 — timer odliczy do najbliższego takiego momentu i wystartuje sam.' },
       { q: 'Czy timer działa offline?', a: 'Tak. To PWA: zainstaluj go z przeglądarki (Do ekranu początkowego / Zainstaluj aplikację), a będzie działał bez internetu.' },
       { q: 'Czy timer jest darmowy?', a: 'Tak — darmowy, bez reklam i bez rejestracji. Ustawienia mieszkają w adresie URL, więc dokładną konfigurację można zapisać lub komuś wysłać.' },
+      { q: 'Czy istnieje aplikacja Pomodoro na iPhone, Androida lub komputer?', a: 'Tak — ten timer to aplikacja Pomodoro (PWA). Zainstaluj ją prosto z przeglądarki: Udostępnij → Do ekranu początkowego na iPhone/iPad, menu → Zainstaluj aplikację na Androidzie lub ikona instalacji w Chrome na komputerze. Bez sklepu z aplikacjami, działa offline i jest darmowa.' },
     ],
     helpHtml: `
 <h2>Timer Pomodoro</h2>
