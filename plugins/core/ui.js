@@ -7,7 +7,23 @@ const QUARTERS = [0, 15, 30, 45];
 export function mountTimer(root, timer, opts = {}) {
   root.classList.add('pt-root');
   root.innerHTML = `
+    <div class="pt-adj-row">
+      <span class="pt-adj-group">
+        <button class="pt-adj" data-d="600">+10</button><button class="pt-adj" data-d="60">+1</button>
+      </span>
+      <span class="pt-adj-group">
+        <button class="pt-adj" data-d="10">+10</button><button class="pt-adj" data-d="1">+1</button>
+      </span>
+    </div>
     <div class="pt-digits" title="Click — start / pause">25:00</div>
+    <div class="pt-adj-row">
+      <span class="pt-adj-group">
+        <button class="pt-adj" data-d="-600">−10</button><button class="pt-adj" data-d="-60">−1</button>
+      </span>
+      <span class="pt-adj-group">
+        <button class="pt-adj" data-d="-10">−10</button><button class="pt-adj" data-d="-1">−1</button>
+      </span>
+    </div>
     <div class="pt-caption"></div>
     <div class="pt-chips pt-durations"></div>
     <div class="pt-chips pt-until"></div>
@@ -46,10 +62,18 @@ export function mountTimer(root, timer, opts = {}) {
     untilRow.appendChild(b);
   }
 
+  root.querySelectorAll('.pt-adj').forEach((b) => {
+    const d = Number(b.dataset.d);
+    const isMin = Math.abs(d) >= 60;
+    b.title = (d > 0 ? '+' : '\u2212') + Math.abs(isMin ? d / 60 : d) + (isMin ? ' min' : ' s');
+    b.addEventListener('click', () => timer.adjust(d));
+  });
+
   const render = () => {
     digits.textContent = timer.display;
     digits.classList.toggle('pt-done', !timer.running && timer.remaining === 0);
-    caption.textContent = timer.caption;
+    const eta = timer.eta;
+    caption.textContent = [timer.caption, eta && '\u2192 ' + eta].filter(Boolean).join(' \u00b7 ');
     startBtn.textContent = timer.running ? 'Pause' : 'Start';
     if (opts.onRender) opts.onRender(timer);
   };

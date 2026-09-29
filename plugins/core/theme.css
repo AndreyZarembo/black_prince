@@ -57,3 +57,21 @@
 }
 .pt-btn:hover { background: var(--pt-panel-hover); }
 .pt-btn.pt-primary { background: var(--pt-accent); color: var(--pt-accent-contrast); }
+
+.pt-adj-row { display: flex; gap: 26px; justify-content: center; }
+.pt-adj-group { display: flex; gap: 4px; }
+.pt-adj {
+  min-width: 30px;
+  padding: 2px 7px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pt-muted);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.6;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+}
+.pt-adj:hover { opacity: 1; background: var(--pt-panel); }

@@ -116,6 +116,25 @@ var init_timer = __esm({
         }
         this.onTick(this);
       }
+      /** Nudge by deltaSec — before start or on the fly (site behavior). */
+      adjust(deltaSec) {
+        if (this.running) {
+          this.endAt += deltaSec * 1e3;
+          this.remaining = Math.max(0, (this.endAt - Date.now()) / 1e3);
+        } else {
+          this.remaining = Math.max(0, Math.min(999 * 60, Math.round(this.remaining) + deltaSec));
+          this.totalSec = this.remaining;
+          this.caption = "";
+        }
+        this.onTick(this);
+      }
+      /** End-of-countdown wall-clock time, e.g. "22:45" (empty when idle). */
+      get eta() {
+        if (!this.running && this.remaining === this.totalSec) return "";
+        const end = this.running ? this.endAt : Date.now() + this.remaining * 1e3;
+        const d = new Date(end);
+        return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+      }
       _stop() {
         this.running = false;
         if (this._id) {
@@ -157,7 +176,7 @@ function pushState() {
       type: "state",
       display: timer.display,
       running: timer.running,
-      caption: timer.caption,
+      caption: [timer.caption, timer.eta && "\u2192 " + timer.eta].filter(Boolean).join(" \xB7 "),
       done: !timer.running && timer.remaining === 0
     });
   }
@@ -203,6 +222,7 @@ function activate(context) {
           else if (msg.type === "reset") timer.reset();
           else if (msg.type === "minutes") timer.setMinutes(msg.value);
           else if (msg.type === "until") timer.setUntil(msg.value);
+          else if (msg.type === "adjust") timer.adjust(msg.value);
           else if (msg.type === "ready") pushState();
         });
         view.onDidDispose(() => {

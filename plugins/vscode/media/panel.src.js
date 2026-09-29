@@ -6,7 +6,23 @@ const QUARTERS = [0, 15, 30, 45];
 const app = document.getElementById('app');
 app.className = 'pt-root';
 app.innerHTML = `
+  <div class="pt-adj-row">
+    <span class="pt-adj-group">
+      <button class="pt-adj" data-d="600">+10</button><button class="pt-adj" data-d="60">+1</button>
+    </span>
+    <span class="pt-adj-group">
+      <button class="pt-adj" data-d="10">+10</button><button class="pt-adj" data-d="1">+1</button>
+    </span>
+  </div>
   <div class="pt-digits">25:00</div>
+  <div class="pt-adj-row">
+    <span class="pt-adj-group">
+      <button class="pt-adj" data-d="-600">−10</button><button class="pt-adj" data-d="-60">−1</button>
+    </span>
+    <span class="pt-adj-group">
+      <button class="pt-adj" data-d="-10">−10</button><button class="pt-adj" data-d="-1">−1</button>
+    </span>
+  </div>
   <div class="pt-caption"></div>
   <div class="pt-chips pt-durations"></div>
   <div class="pt-chips pt-until"></div>
@@ -41,6 +57,12 @@ for (const q of QUARTERS) {
   });
   untilRow.appendChild(b);
 }
+app.querySelectorAll('.pt-adj').forEach((b) => {
+  const d = Number(b.dataset.d);
+  const isMin = Math.abs(d) >= 60;
+  b.title = (d > 0 ? '+' : '\u2212') + Math.abs(isMin ? d / 60 : d) + (isMin ? ' min' : ' s');
+  b.addEventListener('click', () => vscodeApi.postMessage({ type: 'adjust', value: d }));
+});
 toggleBtn.addEventListener('click', () => vscodeApi.postMessage({ type: 'toggle' }));
 document.getElementById('reset').addEventListener('click', () => vscodeApi.postMessage({ type: 'reset' }));
 digits.addEventListener('click', () => vscodeApi.postMessage({ type: 'toggle' }));

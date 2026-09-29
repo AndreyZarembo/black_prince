@@ -9,7 +9,7 @@ function pushState() {
       type: 'state',
       display: timer.display,
       running: timer.running,
-      caption: timer.caption,
+      caption: [timer.caption, timer.eta && '\u2192 ' + timer.eta].filter(Boolean).join(' \u00b7 '),
       done: !timer.running && timer.remaining === 0,
     });
   }
@@ -58,6 +58,7 @@ function activate(context) {
           else if (msg.type === 'reset') timer.reset();
           else if (msg.type === 'minutes') timer.setMinutes(msg.value);
           else if (msg.type === 'until') timer.setUntil(msg.value);
+          else if (msg.type === 'adjust') timer.adjust(msg.value);
           else if (msg.type === 'ready') pushState();
         });
         view.onDidDispose(() => { if (panelView === view) panelView = null; });

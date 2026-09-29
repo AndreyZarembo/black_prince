@@ -88,6 +88,25 @@ var PomodoroTimer = class {
     }
     this.onTick(this);
   }
+  /** Nudge by deltaSec — before start or on the fly (site behavior). */
+  adjust(deltaSec) {
+    if (this.running) {
+      this.endAt += deltaSec * 1e3;
+      this.remaining = Math.max(0, (this.endAt - Date.now()) / 1e3);
+    } else {
+      this.remaining = Math.max(0, Math.min(999 * 60, Math.round(this.remaining) + deltaSec));
+      this.totalSec = this.remaining;
+      this.caption = "";
+    }
+    this.onTick(this);
+  }
+  /** End-of-countdown wall-clock time, e.g. "22:45" (empty when idle). */
+  get eta() {
+    if (!this.running && this.remaining === this.totalSec) return "";
+    const end = this.running ? this.endAt : Date.now() + this.remaining * 1e3;
+    const d = new Date(end);
+    return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+  }
   _stop() {
     this.running = false;
     if (this._id) {
@@ -141,7 +160,23 @@ var QUARTERS = [0, 15, 30, 45];
 function mountTimer(root, timer, opts = {}) {
   root.classList.add("pt-root");
   root.innerHTML = `
+    <div class="pt-adj-row">
+      <span class="pt-adj-group">
+        <button class="pt-adj" data-d="600">+10</button><button class="pt-adj" data-d="60">+1</button>
+      </span>
+      <span class="pt-adj-group">
+        <button class="pt-adj" data-d="10">+10</button><button class="pt-adj" data-d="1">+1</button>
+      </span>
+    </div>
     <div class="pt-digits" title="Click \u2014 start / pause">25:00</div>
+    <div class="pt-adj-row">
+      <span class="pt-adj-group">
+        <button class="pt-adj" data-d="-600">\u221210</button><button class="pt-adj" data-d="-60">\u22121</button>
+      </span>
+      <span class="pt-adj-group">
+        <button class="pt-adj" data-d="-10">\u221210</button><button class="pt-adj" data-d="-1">\u22121</button>
+      </span>
+    </div>
     <div class="pt-caption"></div>
     <div class="pt-chips pt-durations"></div>
     <div class="pt-chips pt-until"></div>
@@ -177,10 +212,17 @@ function mountTimer(root, timer, opts = {}) {
     });
     untilRow.appendChild(b);
   }
+  root.querySelectorAll(".pt-adj").forEach((b) => {
+    const d = Number(b.dataset.d);
+    const isMin = Math.abs(d) >= 60;
+    b.title = (d > 0 ? "+" : "\u2212") + Math.abs(isMin ? d / 60 : d) + (isMin ? " min" : " s");
+    b.addEventListener("click", () => timer.adjust(d));
+  });
   const render = () => {
     digits.textContent = timer.display;
     digits.classList.toggle("pt-done", !timer.running && timer.remaining === 0);
-    caption.textContent = timer.caption;
+    const eta = timer.eta;
+    caption.textContent = [timer.caption, eta && "\u2192 " + eta].filter(Boolean).join(" \xB7 ");
     startBtn.textContent = timer.running ? "Pause" : "Start";
     if (opts.onRender) opts.onRender(timer);
   };
