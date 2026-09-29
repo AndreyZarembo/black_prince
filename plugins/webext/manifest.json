@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Black Prince Pomodoro",
+  "version": "0.1.0",
+  "description": "Tiny Pomodoro timer: popup with presets, count down to the next :00/:15/:30/:45, badge countdown and a notification when time is up.",
+  "icons": { "16": "icons/icon-16.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Pomodoro"
+  },
+  "background": { "service_worker": "sw.js" },
+  "permissions": ["storage", "alarms", "notifications"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "black-prince-pomodoro",
+  "name": "Black Prince Pomodoro",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "Tiny Pomodoro timer that matches your theme: sidebar pane, status-bar countdown, count down to the next :00/:15/:30/:45.",
+  "author": "Andrey Zarembo",
+  "authorUrl": "https://andreyzarembo.github.io/black_prince/",
+  "isDesktopOnly": false
+}

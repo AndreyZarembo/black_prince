@@ -1,0 +1,29 @@
+{
+  "name": "black-prince-pomodoro",
+  "displayName": "Black Prince Pomodoro",
+  "description": "Tiny Pomodoro timer that matches your VS Code theme: status-bar countdown, sidebar panel, count down to the next :00/:15/:30/:45.",
+  "version": "0.1.0",
+  "publisher": "andreyzarembo",
+  "license": "MIT",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "blackPrincePomodoro.toggle", "title": "Pomodoro: Start / Pause" },
+      { "command": "blackPrincePomodoro.reset", "title": "Pomodoro: Reset" }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        { "id": "blackPrincePomodoro", "title": "Pomodoro", "icon": "$(watch)" }
+      ]
+    },
+    "views": {
+      "blackPrincePomodoro": [
+        { "type": "webview", "id": "blackPrincePomodoro.panel", "name": "Timer" }
+      ]
+    }
+  },
+  "repository": { "type": "git", "url": "https://github.com/AndreyZarembo/black_prince" }
+}

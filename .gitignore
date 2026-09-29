@@ -1,2 +1,6 @@
 .claude/
 .DS_Store
+brag-output*/
+plugins/safari/
+plugins/**/node_modules/
+plugins/**/*.vsix
